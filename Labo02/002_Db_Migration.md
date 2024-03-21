@@ -56,7 +56,7 @@ mariadb-dump --user=root --password=**** bitnami_drupal > dump_drupal.sql
 
 [OUTPUT]
 ls -l
--rw-r--r-- 1 bitnami bitnami 4839331 Mar 21 16:07 dump_drupal.sql
+4839331 Mar 21 16:07 dump_drupal.sql
 ```
 
 ### Create the new Data base on RDS
