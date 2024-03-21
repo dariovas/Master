@@ -179,22 +179,35 @@ MariaDB [bitnami_drupal]> show tables;
 
 ```bash
 [INPUT]
-//help : same settings.php as before
+cat /bitnami/drupal/sites/default/settings.php 
 
 [OUTPUT]
-//at the end of the file you will find connection string parameters
-//username = bn_drupal
-//password = XXXXXXX
+# if (file_exists($app_root . '/' . $site_path . '/settings.local.php')) {
+#   include $app_root . '/' . $site_path . '/settings.local.php';
+# }
+$databases['default']['default'] = array (
+  'database' => 'bitnami_drupal',
+  'username' => 'bn_drupal',
+  'password' => 'b8887d29b3dd1045b2d7b3ccf0fc975ad88dd83f553aee27a1ce9439a1f9610b',
+  'prefix' => '',
+  'host' => '127.0.0.1',
+  'port' => '3306',
+  'isolation_level' => 'READ COMMITTED',
+  'driver' => 'mysql',
+  'namespace' => 'Drupal\\mysql\\Driver\\Database\\mysql',
+  'autoload' => 'core/modules/mysql/src/Driver/Database/mysql/',
+);
 ```
 
 ### Replace the current host with the RDS FQDN
 
 ```
 //settings.php
+cat /bitnami/drupal/sites/default/settings.php
 
 $databases['default']['default'] = array (
    [...] 
-  'host' => 'dbi-devopsteam99.cshki92s4w5p.eu-west-3.rds.amazonaws.com',
+  'host' => 'dbi-devopsteam16.cshki92s4w5p.eu-west-3.rds.amazonaws.com',
    [...] 
 );
 ```
@@ -208,24 +221,24 @@ Note : only calls from both private subnets must be approved.
 
 ```sql
 [INPUT]
-CREATE USER bn_drupal@'10.0.[XX].0/[Subnet Mask - A]]' IDENTIFIED BY '<Drupal password>';
+CREATE USER bn_drupal@'10.0.16.0/255.255.255.240' IDENTIFIED BY 'b8887d29b3dd1045b2d7b3ccf0fc975ad88dd83f553aee27a1ce9439a1f9610b';
 
-GRANT ALL PRIVILEGES ON bitnami_drupal.* TO '<yourNewUser>';
+GRANT ALL PRIVILEGES ON bitnami_drupal.* TO bn_drupal@'10.0.16.0/255.255.255.240';
 
-//DO NOT FOREGT TO FLUSH PRIVILEGES
+FLUSH PRIVILEGES;
 ```
 
 ```sql
 //validation
 [INPUT]
-SHOW GRANTS for 'bn_drupal'@'10.0.[XX].0/[yourMask]]';
+SHOW GRANTS for bn_drupal@'10.0.16.0/255.255.255.240';
 
 [OUTPUT]
 +----------------------------------------------------------------------------------------------------------------------------------+
-| Grants for <yourNewUser>                                                                                                         |
+| Grants for bn_drupal@10.0.16.0/255.255.255.240                                                                                   |
 +----------------------------------------------------------------------------------------------------------------------------------+
-| GRANT USAGE ON *.* TO <yourNewUser> IDENTIFIED BY PASSWORD 'XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX'                           |
-| GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO <yourNewUser>                                                                      |
+| GRANT USAGE ON *.* TO `bn_drupal`@`10.0.16.0/255.255.255.240` IDENTIFIED BY PASSWORD '*7DB04C51C725BAE39C089FFF79067201429025FD' |
+| GRANT ALL PRIVILEGES ON `bitnami_drupal`.* TO `bn_drupal`@`10.0.16.0/255.255.255.240`                                            |
 +----------------------------------------------------------------------------------------------------------------------------------+
 ```
 
@@ -233,7 +246,7 @@ SHOW GRANTS for 'bn_drupal'@'10.0.[XX].0/[yourMask]]';
 
 ```sql
 [INPUT]
-mysql -h dbi-devopsteam[XX].xxxxxxxx.eu-west-3.rds.amazonaws.com -u bn_drupal -p
+mysql -h dbi-devopsteam16.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p
 
 [INPUT]
 show databases;
