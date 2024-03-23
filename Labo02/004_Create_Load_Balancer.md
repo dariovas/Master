@@ -18,10 +18,38 @@ instances.
 
 ```bash
 [INPUT]
+aws ec2 create-security-group --group-name SG-DEVOPSTEAM16-LB --description "SG-DEVOPSTEAM16-LB" --vpc-id vpc-03d46c285a2af77ba --tag-specifications ResourceType=security-group,Tags=[{Key=Name,Value=SG-DEVOPSTEAM16-LB}]
 
+aws ec2 authorize-security-group-ingress --group-id sg-0858109c60ec99c7b --ip-permissions IpProtocol=tcp,FromPort=8080,ToPort=8080,IpRanges="[{CidrIp=10.0.0.0/28,Description='HTTP'}]"
 
 [OUTPUT]
+{
+    "GroupId": "sg-0858109c60ec99c7b",
+    "Tags": [
+        {
+            "Key": "Name",
+            "Value": "SG-DEVOPSTEAM16-LB"
+        }
+    ]
+}
 
+
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-01f17269b31f4705e",
+            "GroupId": "sg-0858109c60ec99c7b",
+            "GroupOwnerId": "709024702237",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 8080,
+            "ToPort": 8080,
+            "CidrIpv4": "10.0.0.0/28",
+            "Description": "HTTP"
+        }
+    ]
+}
 ```
 
 * Create the Target Group
@@ -45,10 +73,36 @@ instances.
 
 ```bash
 [INPUT]
+aws elbv2 create-target-group --name TG-DEVOPSTEAM16 --protocol HTTP --protocol-version HTTP1 --port 8080 --ip-address-type ipv4 --vpc-id vpc-03d46c285a2af77ba --healthy-threshold-count 2 --unhealthy-threshold-count 2 --health-check-timeout-seconds 5 --health-check-interval-seconds 10 --matcher HttpCode=200
 
+aws elbv2 register-targets --target-group-arn arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a --targets Id=i-0331f782b4b45f420 Id=i-07303374c9b239b00
 
 [OUTPUT]
-
+{
+    "TargetGroups": [
+        {
+            "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a",
+            "TargetGroupName": "TG-DEVOPSTEAM16",
+            "Protocol": "HTTP",
+            "Port": 8080,
+            "VpcId": "vpc-03d46c285a2af77ba",
+            "HealthCheckProtocol": "HTTP",
+            "HealthCheckPort": "traffic-port",
+            "HealthCheckEnabled": true,
+            "HealthCheckIntervalSeconds": 10,
+            "HealthCheckTimeoutSeconds": 5,
+            "HealthyThresholdCount": 2,
+            "UnhealthyThresholdCount": 2,
+            "HealthCheckPath": "/",
+            "Matcher": {
+                "HttpCode": "200"
+            },
+            "TargetType": "instance",
+            "ProtocolVersion": "HTTP1",
+            "IpAddressType": "ipv4"
+        }
+    ]
+}
 ```
 
 
@@ -74,9 +128,73 @@ field not mentioned at its default value):
 
 ```bash
 [INPUT]
+ aws elbv2 create-load-balancer --name ELB-DEVOPSTEAM16 --scheme internal --security-groups sg-0858109c60ec99c7b --subnets subnet-0403d99111665b019 subnet-05fd5dab104c7d287
 
-
+aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM16/360e49246594e9e3 --protocol HTTP --port 8080 --default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a
+ 
 [OUTPUT]
+{
+    "LoadBalancers": [
+        {
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM16/360e49246594e9e3",
+            "DNSName": "internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com",
+            "CanonicalHostedZoneId": "Z3Q77PNBQS71R4",
+            "CreatedTime": "2024-03-23T14:28:18.670000+00:00",
+            "LoadBalancerName": "ELB-DEVOPSTEAM16",
+            "Scheme": "internal",
+            "VpcId": "vpc-03d46c285a2af77ba",
+            "State": {
+                "Code": "provisioning"
+            },
+            "Type": "application",
+            "AvailabilityZones": [
+                {
+                    "ZoneName": "eu-west-3b",
+                    "SubnetId": "subnet-0403d99111665b019",
+                    "LoadBalancerAddresses": []
+                },
+                {
+                    "ZoneName": "eu-west-3a",
+                    "SubnetId": "subnet-05fd5dab104c7d287",
+                    "LoadBalancerAddresses": []
+                }
+            ],
+            "SecurityGroups": [
+                "sg-0858109c60ec99c7b"
+            ],
+            "IpAddressType": "ipv4"
+        }
+    ]
+}
+
+{
+    "Listeners": [
+        {
+            "ListenerArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:listener/app/ELB-DEVOPSTEAM16/360e49246594e9e3/ad92d3b71deaf6a3",
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM16/360e49246594e9e3",
+            "Port": 8080,
+            "Protocol": "HTTP",
+            "DefaultActions": [
+                {
+                    "Type": "forward",
+                    "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a",
+                    "ForwardConfig": {
+                        "TargetGroups": [
+                            {
+                                "TargetGroupArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a",
+                                "Weight": 1
+                            }
+                        ],
+                        "TargetGroupStickinessConfig": {
+                            "Enabled": false
+                        }
+                    }
+                }
+            ]
+        }
+    ]
+}
+
 
 ```
 
@@ -85,9 +203,42 @@ field not mentioned at its default value):
 ```bash
 [INPUT]
 
+aws elbv2 describe-load-balancers --name ELB-DEVOPSTEAM16
 
 [OUTPUT]
-
+{
+    "LoadBalancers": [
+        {
+            "LoadBalancerArn": "arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM16/360e49246594e9e3",
+            "DNSName": "internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com",
+            "CanonicalHostedZoneId": "Z3Q77PNBQS71R4",
+            "CreatedTime": "2024-03-23T14:28:18.670000+00:00",
+            "LoadBalancerName": "ELB-DEVOPSTEAM16",
+            "Scheme": "internal",
+            "VpcId": "vpc-03d46c285a2af77ba",
+            "State": {
+                "Code": "active"
+            },
+            "Type": "application",
+            "AvailabilityZones": [
+                {
+                    "ZoneName": "eu-west-3b",
+                    "SubnetId": "subnet-0403d99111665b019",
+                    "LoadBalancerAddresses": []
+                },
+                {
+                    "ZoneName": "eu-west-3a",
+                    "SubnetId": "subnet-05fd5dab104c7d287",
+                    "LoadBalancerAddresses": []
+                }
+            ],
+            "SecurityGroups": [
+                "sg-0858109c60ec99c7b"
+            ],
+            "IpAddressType": "ipv4"
+        }
+    ]
+}
 ```
 
 * Get the ELB deployment status
