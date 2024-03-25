@@ -20,7 +20,7 @@ instances.
 [INPUT]
 aws ec2 create-security-group --group-name SG-DEVOPSTEAM16-LB --description "SG-DEVOPSTEAM16-LB" --vpc-id vpc-03d46c285a2af77ba --tag-specifications ResourceType=security-group,Tags=[{Key=Name,Value=SG-DEVOPSTEAM16-LB}]
 
-aws ec2 authorize-security-group-ingress --group-id sg-0858109c60ec99c7b --ip-permissions IpProtocol=tcp,FromPort=8080,ToPort=8080,IpRanges="[{CidrIp=10.0.0.0/28,Description='HTTP'}]"
+aws ec2 authorize-security-group-ingress --group-id sg-0858109c60ec99c7b --ip-permissions IpProtocol=tcp,FromPort=8080,ToPort=8080,IpRanges="[{CidrIp=0.0.0.0/0,Description='HTTP'}]"
 
 [OUTPUT]
 {
@@ -45,7 +45,7 @@ aws ec2 authorize-security-group-ingress --group-id sg-0858109c60ec99c7b --ip-pe
             "IpProtocol": "tcp",
             "FromPort": 8080,
             "ToPort": 8080,
-            "CidrIpv4": "10.0.0.0/28",
+            "CidrIpv4": "0.0.0.0/0",
             "Description": "HTTP"
         }
     ]
