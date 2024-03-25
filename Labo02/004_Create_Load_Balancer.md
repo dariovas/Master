@@ -351,12 +351,33 @@ Address: 10.0.16.134
 Help : execute `tcpdump port 8080`
 
 ```
-//TODO
+$ tcpdump port 8080
+
+bitnami@ip-10-0-16-10:~$ sudo tcpdump port 8080
+
+listening on ens5, link-type EN10MB (Ethernet), snapshot length 262144 bytes
+15:54:20.712334 IP 10.0.16.6.15468 > provisioner-local.http-alt: Flags [S], seq 3917016855, win 26883, options [mss 8961,sackOK,TS val 1678033633 ecr 0,nop,wscale 8], length 0
+15:54:20.712360 IP provisioner-local.http-alt > 10.0.16.6.15468: Flags [S.], seq 1600872091, ack 3917016856, win 62643, options [mss 8961,sackOK,TS val 1313014233 ecr 1678033633,nop,wscale 7], length 0
+15:54:20.712466 IP 10.0.16.6.15468 > provisioner-local.http-alt: Flags [.], ack 1, win 106, options [nop,nop,TS val 1678033633 ecr 1313014233], length 0
+15:54:20.712467 IP 10.0.16.6.15468 > provisioner-local.http-alt: Flags [P.], seq 1:131, ack 1, win 106, options [nop,nop,TS val 1678033633 ecr 1313014233], length 130: HTTP: GET / HTTP/1.1
+15:54:20.712485 IP provisioner-local.http-alt > 10.0.16.6.15468: Flags [.], ack 131, win 489, options [nop,nop,TS val 1313014233 ecr 1678033633], length 0
+15:54:20.722327 IP provisioner-local.http-alt > 10.0.16.6.15468: Flags [P.], seq 1:5623, ack 131, win 489, options [nop,nop,TS val 1313014243 ecr 1678033633], length 5622: HTTP: HTTP/1.1 200 OK
 ```
 
 * In the Apache access log identify the health check accesses from the
   load balancer and copy some samples into the report.
 
 ```
-//TODO
+$ tail -n 10 /opt/bitnami/apache2/logs/access_log
+
+10.0.16.6 - - [25/Mar/2024:15:55:00 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.134 - - [25/Mar/2024:15:55:02 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.6 - - [25/Mar/2024:15:55:10 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.134 - - [25/Mar/2024:15:55:12 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.140 - - [25/Mar/2024:15:55:15 +0000] "GET / HTTP/1.1" 200 16555
+10.0.16.6 - - [25/Mar/2024:15:55:20 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.134 - - [25/Mar/2024:15:55:22 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.6 - - [25/Mar/2024:15:55:30 +0000] "GET / HTTP/1.1" 200 5147
+10.0.16.6 - - [25/Mar/2024:15:55:31 +0000] "GET /sites/default/files/css/css_vq2tTNTAs6ymJ7ITbW3gnB-8--oPdsn13Nct6eTHugo.css?delta=0&language=en&theme=olivero&include=eJx9T1tuxCAMvBCEM-xJKgPTXasEIxuS5vZNVyWV9mN_7PHM-JWkdnz3QSVkHY3Kki7GF65f5uywjjVEMrgkimmk1HnD0-SknFAlNNmhyD4ePhZJ_8InkN3G2C0847JKHgWXXmnjO3WW6g3nCZn0uEQDaXr4nTNeuUqqsrsuUiJp-MtuGHTe-YsXPmeaS---nb32EO1p9GmZ9euSBZao4ZZXri7y_aNxQ5jgB-wdhps HTTP/1.1" 304 -
+10.0.16.134 - - [25/Mar/2024:15:55:32 +0000] "GET / HTTP/1.1" 200 5147
 ```
