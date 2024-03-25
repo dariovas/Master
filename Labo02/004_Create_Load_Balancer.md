@@ -198,7 +198,7 @@ aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:eu-we
 
 ```
 
-* Create the rules on the security group SG-PRIVATE-DRUPAL-DEVOPSTEAM16 to allow the traffic from the loadbalancer to both instances.
+* Create the rules on the security group SG-PRIVATE-DRUPAL-DEVOPSTEAM16 to allow the traffic from the loadbalancer to the subnet A and the subnet B.
 
 For the subnet A :
 ```bash
