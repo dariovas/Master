@@ -171,7 +171,6 @@ aws ec2 run-instances --image-id ami-044b78cb221a345cb --count 1 --instance-type
 * add tunnels for ssh and http pointing on the B Instance
 
 ```bash
-//updated string connection
 ssh devopsteam16@15.188.43.46 -i "C:\Users\ema\CLD_KEY_DMZ_DEVOPSTEAM16.pem" -L 2224:10.0.16.140:22
 
 ssh bitnami@localhost -p 2224 -i "C:\Users\ema\CLD_KEY_DRUPAL_DEVOPSTEAM16.pem"
@@ -181,10 +180,11 @@ ssh devopsteam16@15.188.43.46 -i "C:\Users\ema\CLD_KEY_DMZ_DEVOPSTEAM16.pem" -L 
 
 ## Check SQL Accesses
 
+FROM A :
+
 ```sql
 [INPUT]
-//sql string connection from A
- mysql -h dbi-devopsteam16.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p
+mysql -h dbi-devopsteam16.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p
 
 [OUTPUT]
 
@@ -208,13 +208,13 @@ MariaDB [(none)]> show databases;
 2 rows in set (0.001 sec)
 ```
 
+FROM B :
+
 ```sql
 [INPUT]
-//sql string connection from B
 mysql -h dbi-devopsteam16.cshki92s4w5p.eu-west-3.rds.amazonaws.com -u bn_drupal -p
 
 [OUTPUT]
-
 
 mysql: Deprecated program name. It will be removed in a future release, use '/opt/bitnami/mariadb/bin/mariadb' instead
 Enter password:
