@@ -198,6 +198,56 @@ aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:eu-we
 
 ```
 
+* Create the rules on the security group SG-PRIVATE-DRUPAL-DEVOPSTEAM16 to allow the traffic from the loadbalancer to both instances.
+
+For the subnet A :
+```bash
+[INPUT]
+aws ec2 authorize-security-group-ingress --group-id sg-05cddfeca33d9830b --ip-permissions IpProtocol=tcp,FromPort=8080,ToPort=8080,IpRanges="[{CidrIp=10.0.16.0/28,Description='AZ1'}]"
+
+[OUTPUT]
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-04cb2fdcb13a8b4e0",
+            "GroupId": "sg-05cddfeca33d9830b",
+            "GroupOwnerId": "709024702237",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 8080,
+            "ToPort": 8080,
+            "CidrIpv4": "10.0.16.0/28",
+            "Description": "AZ1"
+        }
+    ]
+}
+```
+
+For the subnet B :
+```bash
+[INPUT]
+aws ec2 authorize-security-group-ingress --group-id sg-05cddfeca33d9830b --ip-permissions IpProtocol=tcp,FromPort=8080,ToPort=8080,IpRanges="[{CidrIp=10.0.16.128/28,Description='AZ2'}]"
+
+[OUTPUT]
+{
+    "Return": true,
+    "SecurityGroupRules": [
+        {
+            "SecurityGroupRuleId": "sgr-0b04674be62de3263",
+            "GroupId": "sg-05cddfeca33d9830b",
+            "GroupOwnerId": "709024702237",
+            "IsEgress": false,
+            "IpProtocol": "tcp",
+            "FromPort": 8080,
+            "ToPort": 8080,
+            "CidrIpv4": "10.0.16.128/28",
+            "Description": "AZ2"
+        }
+    ]
+}
+```
+
 * Get the ELB FQDN (DNS NAME - A Record)
 
 ```bash
@@ -252,17 +302,32 @@ Note : In the EC2 console select the Target Group. In the
 * Update your string connection to test your ELB and test it
 
 ```bash
-//connection string updated
+ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2224:internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com:8080
 ```
 
 * Test your application through your ssh tunneling
 
 ```bash
 [INPUT]
-curl localhost:[local port forwarded]
+curl localhost:2224
 
 [OUTPUT]
+<!DOCTYPE html>
+<html lang="en" dir="ltr" style="--color--primary-hue:202;--color--primary-saturation:79%;--color--primary-lightness:50">
+  <head>
+    <meta charset="utf-8" />
+<meta name="Generator" content="Drupal 10 (https://www.drupal.org)" />
+<meta name="MobileOptimized" content="width" />
+<meta name="HandheldFriendly" content="true" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" href="/core/themes/olivero/favicon.ico" type="image/vnd.microsoft.icon" />
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost:8080/rss.xml" />
+<link rel="alternate" type="application/rss+xml" title="" href="http://localhost/rss.xml" />
 
+    <title>Welcome! | My blog</title>
+    <link rel="stylesheet" media="all" href="/sites/default/files/css/css_-cKnLC8MhiHDJYmodx4zsmXQumPUqyNB5C2ItT3k1yA.css?delta=0&amp;language=en&amp;theme=olivero&amp;include=eJxdjMEKAyEMBX9ord8U9dUNzZqSuIp_X-jBQi9zmIHx5R1XTOQ4VHjANFbRRBK8L-FWt37rhKGEtEISza8dnkA5BmN6_PJxabnl92s0uFJnbcGRtRWytaODLJ9hcsG_a2Sm8wMVPz8c" />
+<link rel="stylesheet" media="all" href="/sites/default/files/css/css_-xZkCDHGo6yyFo1nDdel_HofPlSTMWoY_9ApjkD4ucw.css?delta=1&amp;language=en&amp;theme=olivero&amp;include=eJxdjMEKAyEMBX9ord8U9dUNzZqSuIp_X-jBQi9zmIHx5R1XTOQ4VHjANFbRRBK8L-FWt37rhKGEtEISza8dnkA5BmN6_PJxabnl92s0uFJnbcGRtRWytaODLJ9hcsG_a2Sm8wMVPz8c" />
+...
 ```
 
 #### Questions - Analysis
