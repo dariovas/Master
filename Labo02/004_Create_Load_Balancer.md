@@ -353,8 +353,6 @@ Help : execute `tcpdump port 8080`
 ```
 $ tcpdump port 8080
 
-bitnami@ip-10-0-16-10:~$ sudo tcpdump port 8080
-
 listening on ens5, link-type EN10MB (Ethernet), snapshot length 262144 bytes
 15:54:20.712334 IP 10.0.16.6.15468 > provisioner-local.http-alt: Flags [S], seq 3917016855, win 26883, options [mss 8961,sackOK,TS val 1678033633 ecr 0,nop,wscale 8], length 0
 15:54:20.712360 IP provisioner-local.http-alt > 10.0.16.6.15468: Flags [S.], seq 1600872091, ack 3917016856, win 62643, options [mss 8961,sackOK,TS val 1313014233 ecr 1678033633,nop,wscale 7], length 0
