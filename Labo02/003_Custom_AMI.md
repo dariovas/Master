@@ -171,7 +171,7 @@ aws ec2 run-instances --image-id ami-044b78cb221a345cb --count 1 --instance-type
 * add tunnels for ssh and http pointing on the B Instance
 
 ```bash
-ssh devopsteam16@15.188.43.46 -i "C:\Users\ema\CLD_KEY_DMZ_DEVOPSTEAM16.pem" -L 2224:10.0.16.140:22 -L 2225:10.0.16.140:8080
+ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2224:10.0.16.140:22 -L 2225:10.0.16.140:8080
 ```
 
 ## Check SQL Accesses
@@ -236,7 +236,7 @@ MariaDB [(none)]> show databases;
 ### Check HTTP Accesses
 
 ```bash
-ssh devopsteam16@15.188.43.46 -i "C:\Users\ema\CLD_KEY_DMZ_DEVOPSTEAM16.pem" -L 2225:10.0.16.140:8080
+ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2225:10.0.16.140:8080
 
 connected with http://localhost:2225/
 ```
