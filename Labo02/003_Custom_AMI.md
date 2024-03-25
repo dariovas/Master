@@ -255,7 +255,6 @@ connected with http://localhost:2225/
 * Observations ?
 
 ```
-//TODO
 login : cat /home/bitnami/bitnami_credentials
 user,  yZ1=X/imdNpV
 When I connect to drupal instance B, I was automatically connected to drupal A.
