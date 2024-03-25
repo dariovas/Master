@@ -128,7 +128,7 @@ field not mentioned at its default value):
 
 ```bash
 [INPUT]
- aws elbv2 create-load-balancer --name ELB-DEVOPSTEAM16 --scheme internal --security-groups sg-0858109c60ec99c7b --subnets subnet-0403d99111665b019 subnet-05fd5dab104c7d287
+aws elbv2 create-load-balancer --name ELB-DEVOPSTEAM16 --scheme internal --security-groups sg-0858109c60ec99c7b --subnets subnet-0403d99111665b019 subnet-05fd5dab104c7d287
 
 aws elbv2 create-listener --load-balancer-arn arn:aws:elasticloadbalancing:eu-west-3:709024702237:loadbalancer/app/ELB-DEVOPSTEAM16/360e49246594e9e3 --protocol HTTP --port 8080 --default-actions Type=forward,TargetGroupArn=arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a
  
@@ -272,7 +272,13 @@ curl localhost:[local port forwarded]
   the DNS name and the resolved IP Address(es) into the report.
 
 ```
-//TODO
+nslookup internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com
+
+Non-authoritative answer:
+Name:	internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com
+Address: 10.0.16.6
+Name:	internal-ELB-DEVOPSTEAM16-512155870.eu-west-3.elb.amazonaws.com
+Address: 10.0.16.134
 ```
 
 * From your Drupal instance, identify the ip from which requests are sent by the Load Balancer.
