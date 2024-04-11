@@ -14,10 +14,8 @@
 * 1 RDS Database instance - started
 * 1 Elastic Load Balancer - started
 
-## Create a new launch configuration. 
-[Source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html)
-
 ## Create a new launch template. 
+[Source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html)
 
 |Key|Value|
 |:--|:--|
