@@ -33,6 +33,8 @@
 ```
 [INPUT]
 //cli command
+aws autoscaling -launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --version 1.0  --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5
+https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-launch-configuration.html
 
 [OUTPUT]
 ```
