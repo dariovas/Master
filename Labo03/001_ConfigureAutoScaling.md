@@ -15,7 +15,7 @@
 * 1 Elastic Load Balancer - started
 
 ## Create a new launch configuration. 
-[Source](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-launch-configuration.html)
+[Source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html)
 
 |Key|Value|
 |:--|:--|
