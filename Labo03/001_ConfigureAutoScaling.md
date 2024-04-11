@@ -33,7 +33,7 @@
 ```
 [INPUT]
 //cli command
-aws autoscaling create-launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5 --block-device-mappings='[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":10,"VolumeType":"gp3","DeleteOnTermination":true}}]' --key-name CLD_KEY_DRUPAL_DEVOPSTEAM16 --instance-monitoring Enabled=true 
+aws autoscaling create-launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5 --block-device-mappings='[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":10,"VolumeType":"gp3","Iops":3000,"Throughput":125,"DeleteOnTermination":true,"Encrypted":false}}]' --key-name CLD_KEY_DRUPAL_DEVOPSTEAM16 --instance-monitoring Enabled=true  --no-associate-public-ip-address 
 
 https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-launch-configuration.html
 
