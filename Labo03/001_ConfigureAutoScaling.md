@@ -14,12 +14,10 @@
 * 1 RDS Database instance - started
 * 1 Elastic Load Balancer - started
 
-<<<<<<< HEAD
 ## Create a new launch configuration. 
 [Source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html)
 =======
 ## Create a new launch template. 
->>>>>>> upstream/main
 
 |Key|Value|
 |:--|:--|
@@ -37,50 +35,10 @@
 
 ```
 [INPUT]
-<<<<<<< HEAD
-aws autoscaling create-launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5 --block-device-mappings='[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":10,"VolumeType":"gp3","Iops":3000,"Throughput":125,"DeleteOnTermination":true,"Encrypted":false}}]' --key-name CLD_KEY_DRUPAL_DEVOPSTEAM16 --instance-monitoring Enabled=true  --no-associate-public-ip-address 
-=======
 //cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
->>>>>>> upstream/main
+Done with the AWS Web Console.
 
 [OUTPUT]
-There is no output, but if we display the launch configuration with a describe command, we can see it
-
-{
-            "LaunchConfigurationName": "LT-DEVOPSTEAM16",
-            "LaunchConfigurationARN": "arn:aws:autoscaling:eu-west-3:709024702237:launchConfiguration:d38d1bc2-7576-42b1-961c-898e0550afbf:launchConfigurationName/LT-DEVOPSTEAM16",
-            "ImageId": "ami-044b78cb221a345cb",
-            "KeyName": "CLD_KEY_DRUPAL_DEVOPSTEAM16",
-            "SecurityGroups": [
-                "sg-0e738341e822b80c5"
-            ],
-            "ClassicLinkVPCSecurityGroups": [],
-            "UserData": "",
-            "InstanceType": "t3.micro",
-            "KernelId": "",
-            "RamdiskId": "",
-            "BlockDeviceMappings": [
-                {
-                    "DeviceName": "/dev/xvda",
-                    "Ebs": {
-                        "VolumeSize": 10,
-                        "VolumeType": "gp3",
-                        "DeleteOnTermination": true,
-                        "Iops": 3000,
-                        "Encrypted": false,
-                        "Throughput": 125
-                    }
-                }
-            ],
-            "InstanceMonitoring": {
-                "Enabled": true
-            },
-            "CreatedTime": "2024-04-11T13:48:59.037000+00:00",
-            "EbsOptimized": false,
-            "AssociatePublicIpAddress": false
-        }
-
-
 ```
 
 ## Create an autoscaling group
