@@ -85,11 +85,32 @@ Test ssh and web access.
 
 ```
 [INPUT]
-//ssh login
+$ ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2224:internal-ELB-DEVOPSTEAM16-1841517474.eu-west-3.elb.amazonaws.com:8080 -L 24:10.0.16.11:22
+$ ssh bitnami@localhost -p 2223 -i CLD_KEY_DRUPAL_DEVOPSTEAM16.pem
 
 [OUTPUT]
+Linux ip-10-0-16-11 5.10.0-28-cloud-amd64 #1 SMP Debian 5.10.209-2 (2024-01-31) x86_64
+
+The programs included with the Debian GNU/Linux system are free software;
+the exact distribution terms for each program are described in the
+individual files in /usr/share/doc/*/copyright.
+
+Debian GNU/Linux comes with ABSOLUTELY NO WARRANTY, to the extent
+permitted by applicable law.
+       ___ _ _                   _
+      | _ |_) |_ _ _  __ _ _ __ (_)
+      | _ \ |  _| ' \/ _` | '  \| |
+      |___/_|\__|_|_|\__,_|_|_|_|_|
+  
+  *** Welcome to the Bitnami package for Drupal 10.2.3-1        ***
+  *** Documentation:  https://docs.bitnami.com/aws/apps/drupal/ ***
+  ***                 https://docs.bitnami.com/aws/             ***
+  *** Bitnami Forums: https://github.com/bitnami/vms/           ***
+Last login: Thu Mar  7 15:59:00 2024 from 10.0.0.5
+bitnami@ip-10-0-16-11:~$ 
 ```
 
 ```
 //screen shot, web access (login)
 ```
+<img width="1467" alt="image" src="https://github.com/dariovas/Master/assets/114938675/18f23818-8241-4de6-a07d-fc15c35c6a10">
