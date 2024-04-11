@@ -15,6 +15,7 @@
 * 1 Elastic Load Balancer - started
 
 ## Create a new launch configuration. 
+[Source](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-launch-configuration.html)
 
 |Key|Value|
 |:--|:--|
@@ -30,13 +31,9 @@
 |Advanced Details/EC2 Detailed Cloud Watch|enable|
 |Purchase option/Request Spot instance|disable|
 
-[Source](https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-launch-configuration.html)
-
 ```
 [INPUT]
 aws autoscaling create-launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5 --block-device-mappings='[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":10,"VolumeType":"gp3","Iops":3000,"Throughput":125,"DeleteOnTermination":true,"Encrypted":false}}]' --key-name CLD_KEY_DRUPAL_DEVOPSTEAM16 --instance-monitoring Enabled=true  --no-associate-public-ip-address 
-
-
 
 [OUTPUT]
 There is no output, but if we display the launch configuration with a describe command, we can see it
