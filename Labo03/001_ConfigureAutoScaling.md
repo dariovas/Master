@@ -72,6 +72,7 @@ Done with the AWS Web Console.
 ```
 [INPUT]
 //cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
+Done with the AWS Web Console.
 
 [OUTPUT]
 ```
