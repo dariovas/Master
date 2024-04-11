@@ -40,6 +40,7 @@ Done with the AWS Web Console.
 ```
 
 ## Create an autoscaling group
+[Source](https://docs.aws.amazon.com/autoscaling/ec2/userguide/create-asg-launch-template.html)
 
 * Choose launch template or configuration
 
@@ -70,17 +71,8 @@ Done with the AWS Web Console.
 
 ```
 [INPUT]
-<<<<<<< HEAD
-//cli command
-aws autoscaling   create-auto-scaling-group --auto-scaling-group-name ASGRP_DEVOPSTEAM16 --launch-configuration-name LT-DEVOPSTEAM16 --vpc-zone-identifier "subnet-0403d99111665b019,subnet-05fd5dab104c7d287" 
---load-balancer-names "ELB-DEVOPSTEAM16  --target-group-arns arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a 
---health-check-type ELB --health-check-grace-period 10 --min-size 1 --max-size 1 --desired-capacity 1
-=======
 //cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
->>>>>>> upstream/main
 
-
-https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-auto-scaling-group.html
 [OUTPUT]
 ```
 
