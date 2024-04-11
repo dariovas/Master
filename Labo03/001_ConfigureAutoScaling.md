@@ -14,8 +14,12 @@
 * 1 RDS Database instance - started
 * 1 Elastic Load Balancer - started
 
+<<<<<<< HEAD
 ## Create a new launch configuration. 
 [Source](https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/create-launch-template.html)
+=======
+## Create a new launch template. 
+>>>>>>> upstream/main
 
 |Key|Value|
 |:--|:--|
@@ -33,7 +37,11 @@
 
 ```
 [INPUT]
+<<<<<<< HEAD
 aws autoscaling create-launch-configuration --launch-configuration-name LT-DEVOPSTEAM16 --image-id ami-044b78cb221a345cb --instance-type t3.micro --security-groups sg-0e738341e822b80c5 --block-device-mappings='[{"DeviceName":"/dev/xvda","Ebs":{"VolumeSize":10,"VolumeType":"gp3","Iops":3000,"Throughput":125,"DeleteOnTermination":true,"Encrypted":false}}]' --key-name CLD_KEY_DRUPAL_DEVOPSTEAM16 --instance-monitoring Enabled=true  --no-associate-public-ip-address 
+=======
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
+>>>>>>> upstream/main
 
 [OUTPUT]
 There is no output, but if we display the launch configuration with a describe command, we can see it
@@ -106,10 +114,14 @@ There is no output, but if we display the launch configuration with a describe c
 
 ```
 [INPUT]
+<<<<<<< HEAD
 //cli command
 aws autoscaling   create-auto-scaling-group --auto-scaling-group-name ASGRP_DEVOPSTEAM16 --launch-configuration-name LT-DEVOPSTEAM16 --vpc-zone-identifier "subnet-0403d99111665b019,subnet-05fd5dab104c7d287" 
 --load-balancer-names "ELB-DEVOPSTEAM16  --target-group-arns arn:aws:elasticloadbalancing:eu-west-3:709024702237:targetgroup/TG-DEVOPSTEAM16/d34751cfd970b57a 
 --health-check-type ELB --health-check-grace-period 10 --min-size 1 --max-size 1 --desired-capacity 1
+=======
+//cli command is optionnal. Important is the screen shot to delivery in next step (testing and validation)
+>>>>>>> upstream/main
 
 
 https://awscli.amazonaws.com/v2/documentation/api/latest/reference/autoscaling/create-auto-scaling-group.html
