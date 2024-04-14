@@ -45,6 +45,7 @@ ECC2 instances list (running state)
 ```
 ![](./img/CLD_AWS_EC2_InstancesList.png)
 
+[Source](https://docs.aws.amazon.com/cli/latest/reference/ec2/describe-instances.html)
 ```
 [INPUT]
 aws ec2 describe-instances --filters "Name=key-name,Values=CLD_KEY_DRUPAL_DEVOPSTEAM16" --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' --output table
