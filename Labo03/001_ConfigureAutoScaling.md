@@ -115,4 +115,4 @@ bitnami@ip-10-0-16-11:~$
 //screen shot, web access (login)
 ```
 
-![](./img/CLD_AWS_WebAccess.PNG)
+![](./img/CLD_AWS_WebAccess.png)
