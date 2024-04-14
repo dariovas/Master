@@ -18,7 +18,7 @@ htop
 [OUTPUT]
 //copy the part representing vCPus, RAM and swap usage
 ```
-![](./img/CLD_Drupal_HTOP.png)
+![](./img/CLD_Drupal_htop.png)
 
 ### Stress your instance
 
