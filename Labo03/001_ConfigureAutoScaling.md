@@ -85,8 +85,9 @@ Test ssh and web access.
 
 ```
 [INPUT]
-$ ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2224:internal-ELB-DEVOPSTEAM16-1841517474.eu-west-3.elb.amazonaws.com:8080 -L 24:10.0.16.11:22
-$ ssh bitnami@localhost -p 2223 -i CLD_KEY_DRUPAL_DEVOPSTEAM16.pem
+$ ssh devopsteam16@15.188.43.46 -i CLD_KEY_DMZ_DEVOPSTEAM16.pem -L 2224:internal-ELB-DEVOPSTEAM16-1841517474.eu-west-3.elb.amazonaws.com:8080 -L 2226:10.0.16.11:22
+
+$ ssh bitnami@localhost -p 2226 -i CLD_KEY_DRUPAL_DEVOPSTEAM16.pem
 
 [OUTPUT]
 Linux ip-10-0-16-11 5.10.0-28-cloud-amd64 #1 SMP Debian 5.10.209-2 (2024-01-31) x86_64
