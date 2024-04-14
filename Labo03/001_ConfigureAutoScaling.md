@@ -114,4 +114,5 @@ bitnami@ip-10-0-16-11:~$
 ```
 //screen shot, web access (login)
 ```
-<img width="1467" alt="image" src="https://github.com/dariovas/Master/assets/114938675/18f23818-8241-4de6-a07d-fc15c35c6a10">
+
+![](./img/CLD_AWS_WebAccess.PNG)
