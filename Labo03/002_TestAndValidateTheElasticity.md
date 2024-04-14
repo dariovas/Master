@@ -42,6 +42,7 @@ Cloud watch metric
 ![](./img/CLD_AWS_CPU_Metrics.png)
 
 ```
+[INPUT]
 ECC2 instances list (running state)
 ```
 ![](./img/CLD_AWS_EC2_InstancesList.png)
