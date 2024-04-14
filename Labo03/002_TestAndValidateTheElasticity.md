@@ -81,16 +81,19 @@ Cloud watch alarm target tracking
 [Change the default cooldown period](https://docs.aws.amazon.com/autoscaling/ec2/userguide/ec2-auto-scaling-scaling-cooldowns.html)
 
 ```
-//TODO screenshot from cloud watch metric
+Cloud watch metric
 ```
+![](./img/CLD_AWS_CPU_MetricsLow.png)
 
 ```
-//TODO screenshot of ec2 instances list (terminated state)
+EC2 instances list (terminated state)
 ```
+![](./img/CLD_AWS_EC2_InstancesTermList.png)
 
 ```
-//TODO screenshot of the activity history
+Activity history
 ```
+![](./img/CLD_AWS_ActivityHistoryTerm.png)
 
 ## Release Cloud resources
 
