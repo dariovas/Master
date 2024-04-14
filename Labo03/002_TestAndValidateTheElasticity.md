@@ -39,7 +39,7 @@ stress -c 2
 Cloud watch metric
 ```
 
-![](./img/CLD_AWS_CPU_METRICS.png)
+![](./img/CLD_AWS_CPU_Metrics.png)
 
 ```
 ECC2 instances list (running state)
