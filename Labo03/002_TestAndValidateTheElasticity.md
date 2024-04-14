@@ -47,9 +47,19 @@ ECC2 instances list (running state)
 
 ```
 [INPUT]
-//aws cli command
+aws ec2 describe-instances --filters "Name=key-name,Values=CLD_KEY_DRUPAL_DEVOPSTEAM16" --query 'Reservations[*].Instances[*].{Instance:InstanceId,AZ:Placement.AvailabilityZone,Name:Tags[?Key==`Name`]|[0].Value}' --output table
 
 [OUTPUT]
+-------------------------------------------------------------------------------
+|                              DescribeInstances                              |
++------------+-----------------------+----------------------------------------+
+|     AZ     |       Instance        |                 Name                   |
++------------+-----------------------+----------------------------------------+
+|  eu-west-3a|  i-02bca9e2bf33f94f9  |  AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM16  |
+|  eu-west-3a|  i-045f37ef867cad5ca  |  AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM16  |
+|  eu-west-3b|  i-02e001339e1a76236  |  AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM16  |
+|  eu-west-3b|  i-07921f497bfff4624  |  AUTO_EC2_PRIVATE_DRUPAL_DEVOPSTEAM16  |
++------------+-----------------------+----------------------------------------+
 ```
 
 ```
