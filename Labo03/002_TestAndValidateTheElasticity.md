@@ -24,7 +24,7 @@ htop
 
 ```
 [INPUT]
-//stress command
+stress -c 2
 
 [OUTPUT]
 //copy the part representing vCPus, RAM and swap usage
