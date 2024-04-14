@@ -35,14 +35,12 @@ stress -c 2
 * (Scale-IN) Observe the autoscaling effect on your infa
 
 ```
-[INPUT]
 Cloud watch metric
 ```
 
 ![](./img/CLD_AWS_CPU_Metrics.png)
 
 ```
-[INPUT]
 ECC2 instances list (running state)
 ```
 ![](./img/CLD_AWS_EC2_InstancesList.png)
@@ -55,14 +53,16 @@ ECC2 instances list (running state)
 ```
 
 ```
-//TODO screenshot of the activity history
+Activity history
 ```
-[Sample](./img/CLD_AWS_ASG_ACTIVITY_HISTORY.PNG)
+
+![](./img/CLD_AWS_ActivityHistory.png)
 
 ```
-//TODO screenshot of the cloud watch alarm target tracking
+Cloud watch alarm target tracking
 ```
-[Sample](./img/CLD_AWS_CLOUDWATCH_ALARMHIGH_STATS.PNG)
+
+![](./img/CLD_AWS_AlarmHigh.png)
 
 
 * (Scale-OUT) As soon as all 4 instances have started, end stress on the main machine.
