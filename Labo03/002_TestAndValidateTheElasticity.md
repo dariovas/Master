@@ -30,6 +30,7 @@ stress -c 2
 //copy the part representing vCPus, RAM and swap usage
 //tip : use two ssh sessions....
 ```
+![](./img/CLD_Drupal_StressCPU.png)
 
 * (Scale-IN) Observe the autoscaling effect on your infa
 
