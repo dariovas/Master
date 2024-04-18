@@ -56,7 +56,7 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   The Servlet provides a default application in which we can 
+   The Servlet provides a default application. This one respond to HTTP get request by printing informations about the Java version and the operating system.
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
