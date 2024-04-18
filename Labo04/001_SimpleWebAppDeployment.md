@@ -56,7 +56,7 @@ Create a simple web application as follows.
    `HelloAppEngine` file. What does the code do?
 
    ```
-   //TODO
+   The Servlet provides a default application in which we can 
    ```
 
 6. Note the annotation starting with `@WebServlet` in front of the
