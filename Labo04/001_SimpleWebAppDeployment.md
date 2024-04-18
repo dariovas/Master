@@ -158,17 +158,97 @@ Deliverables:
   **appengine-web.xml** and **index.jsp** files in a few sentences.
 
   ```
-  //TODO Java class files
+  Java class files
+   package ch.heigvd.cld.lab;
+
+   import com.google.appengine.api.utils.SystemProperty;
+   
+   import java.io.IOException;
+   import java.util.Properties;
+   
+   import javax.servlet.annotation.WebServlet;
+   import javax.servlet.http.HttpServlet;
+   import javax.servlet.http.HttpServletRequest;
+   import javax.servlet.http.HttpServletResponse;
+   
+   @WebServlet(name = "HelloAppEngine", value = "/hello")
+   public class HelloAppEngine extends HttpServlet {
+   
+     @Override
+     public void doGet(HttpServletRequest request, HttpServletResponse response)
+         throws IOException {
+   
+       Properties properties = System.getProperties();
+   
+       response.setContentType("text/plain");
+       response.getWriter().println("Hello App Engine - Standard using "
+           + SystemProperty.version.get() + " Java " + properties.get("java.specification.version"));
+     }
+   
+     public static String getInfo() {
+       return "Version: " + System.getProperty("java.version")
+             + " OS: " + System.getProperty("os.name")
+             + " User: " + System.getProperty("user.name");
+     }
+   
+   }
   ```
 
   ```
-  //TODO web.xml
+  web.xml
+
+  <?xml version="1.0" encoding="utf-8"?>
+  <web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
+         http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd" version="3.1">
+  <welcome-file-list>
+    <welcome-file>index.jsp</welcome-file>
+  </welcome-file-list>
+  </web-app>
+
   ```
 
   ```
-  //TODO appengine-web.xml
+  appengine-web.xml
+  
+  <?xml version="1.0" encoding="utf-8"?>
+  <appengine-web-app xmlns="http://appengine.google.com/ns/1.0">
+    <runtime>java11</runtime>
+    <threadsafe>true</threadsafe>
+    <app-engine-apis>true</app-engine-apis>
+    <system-properties>
+        <property name="java.util.logging.config.file" value="WEB-INF/logging.properties"/>
+    </system-properties>
+  </appengine-web-app>
+
   ```
 
   ```
-  //TODO index.jsp
+  index.jsp
+
+   <!DOCTYPE html>
+   <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+   <%@ page import="ch.heigvd.cld.lab.HelloAppEngine" %>
+   <html>
+   <head>
+     <link href='//fonts.googleapis.com/css?family=Marmelad' rel='stylesheet' type='text/css'>
+     <title>Hello App Engine Standard Java 8</title>
+   </head>
+   <body>
+       <h1>Hello App Engine -- Java 8!</h1>
+   
+     <p>This is <%= HelloAppEngine.getInfo() %>.</p>
+     <table>
+       <tr>
+         <td colspan="2" style="font-weight:bold;">Available Servlets:</td>
+       </tr>
+       <tr>
+         <td><a href='/hello'>Hello App Engine</a></td>
+       </tr>
+     </table>
+   
+   </body>
+   </html>
+
   ```
