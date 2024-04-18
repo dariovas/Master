@@ -74,8 +74,7 @@ Create a simple web application as follows.
    `appengine-web.xml` in `webapp/WEB-INF`. What information does it contain?
 
    ```
-   //TODO
-   It's the configuration for the google app engine. We can find the java version. 
+   It's the configuration file for the google app engine. We can find the java version. 
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -87,7 +86,6 @@ Create a simple web application as follows.
     `index.jsp` spotted in `web.xml`. What is its use ?
 
     ```
-    //TODO
     This is the default page of our web application.
     ```
 
@@ -159,24 +157,24 @@ Deliverables:
 
   ```
   Java class files
-   package ch.heigvd.cld.lab;
+  package ch.heigvd.cld.lab;
 
-   import com.google.appengine.api.utils.SystemProperty;
+  import com.google.appengine.api.utils.SystemProperty;
+ 
+  import java.io.IOException;
+  import java.util.Properties;
    
-   import java.io.IOException;
-   import java.util.Properties;
+  import javax.servlet.annotation.WebServlet;
+  import javax.servlet.http.HttpServlet;
+  import javax.servlet.http.HttpServletRequest;
+  import javax.servlet.http.HttpServletResponse;
    
-   import javax.servlet.annotation.WebServlet;
-   import javax.servlet.http.HttpServlet;
-   import javax.servlet.http.HttpServletRequest;
-   import javax.servlet.http.HttpServletResponse;
+  @WebServlet(name = "HelloAppEngine", value = "/hello")
+  public class HelloAppEngine extends HttpServlet {
    
-   @WebServlet(name = "HelloAppEngine", value = "/hello")
-   public class HelloAppEngine extends HttpServlet {
-   
-     @Override
-     public void doGet(HttpServletRequest request, HttpServletResponse response)
-         throws IOException {
+    @Override
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
+     throws IOException {
    
        Properties properties = System.getProperties();
    
@@ -190,8 +188,7 @@ Deliverables:
              + " OS: " + System.getProperty("os.name")
              + " User: " + System.getProperty("user.name");
      }
-   
-   }
+  }
   ```
 
   ```
