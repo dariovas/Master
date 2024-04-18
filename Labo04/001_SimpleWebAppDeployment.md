@@ -66,7 +66,8 @@ Create a simple web application as follows.
    `web.xml`. What information does it contain? And what is its use ?
 
    ```
-   //TODO
+   This is the configuration of the web application.
+   It's used to defined the default webpage.
    ```
 
 8. Inspect the Google App Engine configuration file
@@ -74,6 +75,7 @@ Create a simple web application as follows.
 
    ```
    //TODO
+   It's the configuration for the google app engine. We can find the java version. 
    ```
 
 9. Edit the Google App Engine configuration file as follows:
@@ -86,6 +88,7 @@ Create a simple web application as follows.
 
     ```
     //TODO
+    This is the default page of our web application.
     ```
 
 ---
