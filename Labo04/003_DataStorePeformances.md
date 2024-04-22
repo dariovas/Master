@@ -112,6 +112,8 @@ Command to run to test the performances
   quotas (**Daily quota** different from 0%). Explain each with a sentence.
   To get a sense of everything that is measured click on **Show resources not in use**.
 
+  ![](./images/quotas.png)
+  
   ```
   //TODO
   ```
