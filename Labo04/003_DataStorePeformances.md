@@ -81,12 +81,19 @@ Command to run to test the performances
 - What response times do you observe for each Servlet?
 
   ```
-  //TODO
+  For the Servlet Hello page, we have latency peaks of between 10'000 ms and 11'000 ms.
+
+  And, for the datastorewrite Servlet, we have latency peaks of around 20,000 ms and a few errors where the server has not managed to respond   
+  in time. 
   ```
 
 - Compare the response times shown by vegeta with the App Engine
   console. Explain the difference.
 
+  Below is the diagram in the App Engine console.
+
+  ![](./images/diagram-perf-google)
+ 
   ```
   //TODO
   ```
