@@ -115,7 +115,18 @@ Command to run to test the performances
   ![](./images/quotas.png)
   
   ```
-  //TODO
+  Cloud Firestore Read Operations          : Operations readed.
+  Cloud Firestore API Calls                : API calls.
+  Cloud Firestore Stored Data              : Data stored.
+  Data Sent to Cloud Firestore API	        : Data sent to the application.
+  Data Received from Cloud Firestore API   : Data received from the application.
+  Cloud Firestore Entity Fetch Ops         : The number of fetch operations for entities
+  Cloud Firestore Entity Writes            : The number of write operations for entities
+  Cloud Firestore Index Write Ops	         : The number of write operations for indexes
+  Cloud Firestore Network Egress           : The amount of outgoing data
+  Cloud Storage Class B Operations	        : The number of Class B operations
+  Cloud Storage Class A Operations	        :
+  Cloud Storage Network (Egress) - Americas and EMEA	: 
   ```
 
 - Let's suppose you become suspicious that the algorithm for the automatic scaling of
