@@ -53,6 +53,7 @@ Command to run to test the performances
   ```
   printf "GET https://labgae-421113.ew.r.appspot.com/hello" > target.list
   vegeta attack -duration=5s -rate=200 -targets=target.list | tee results.bin | vegeta report
+  cat results.bin | vegeta plot --title="Servlet Hello Page" > loadtest.html
   ```
 
   ```
@@ -68,12 +69,14 @@ Command to run to test the performances
   ```
   printf "GET https://labgae-421113.ew.r.appspot.com/datastorewrite?_kind=book&author=Vegeta&title=Performance" > target.list
   vegeta attack -duration=5s -rate=200 -targets=target.list | tee results.bin | vegeta report
+  cat results.bin | vegeta plot --title="Servlet Datastorewrite" > loadtest.html
   ```
 
   ```
   Diagram
   ```
-
+  
+  ![](./images/vegeta-plot-servlet-datastorewrite.png)
 
 - What response times do you observe for each Servlet?
 
