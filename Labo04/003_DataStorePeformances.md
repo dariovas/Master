@@ -93,10 +93,18 @@ Command to run to test the performances
 
   Below is the diagram in the App Engine console.
 
+  On the left, this is the latencies diagram for the Servlet Hello page and on the right, this is the latencices 
+  diagram for the Servlet datastorewrite.
+
   ![](./images/diagram-perf-google.png)
  
   ```
-  //TODO
+  The vegeta diagrams show more details on the time on which the peak occured, moreover, it show if the server   
+  responded or if it returned an error.
+
+  However, on the Google Diagram, we do not see each peak, it seems to be an average of them, so we loose precision.
+
+  But, we see the same maximum peaks on both diagrams.
   ```
 
 - How many resources have you used to run these tests? From the
