@@ -120,20 +120,24 @@ Command to run to test the performances
   Cloud Firestore Stored Data              : Data stored.
   Data Sent to Cloud Firestore API	        : Data sent to the application.
   Data Received from Cloud Firestore API   : Data received from the application.
-  Cloud Firestore Entity Fetch Ops         : The number of fetch operations for entities
-  Cloud Firestore Entity Writes            : The number of write operations for entities
-  Cloud Firestore Index Write Ops	         : The number of write operations for indexes
+  Cloud Firestore Entity Fetch Ops         : Fetch operations for entities
+  Cloud Firestore Entity Writes            : Write operations for entities
+  Cloud Firestore Index Write Ops	         : Write operations for indexes
   Cloud Firestore Network Egress           : The amount of outgoing data
-  Cloud Storage Class B Operations	        : The number of Class B operations
-  Cloud Storage Class A Operations	        :
-  Cloud Storage Network (Egress) - Americas and EMEA	: 
+  Cloud Storage Class B Operations	        : The number of Class B operations (Class B operations include actions like listing objects or 
+                                             retrieving data)
+  Cloud Storage Class A Operations	        : The number of Class A operations (Class A operation include actions like retriving data from an                                                 object.
+  Cloud Storage Network (Egress) - Americas and EMEA	: the amount of outgoing data to the Americas and EMEA regions.
   ```
 
 - Let's suppose you become suspicious that the algorithm for the automatic scaling of
   instances is not working correctly. Imagine a way in which the algorithm could be broken. Which measures shown in the console would you use to detect this failure?
 
   ```
-  //TODO
+  The following measures are usefull to indicate if we need much instances :Cloud Firestore Read Operations, Cloud Firestore Entity Writes and  
+  Cloud Firestore Entity Fetch Ops.
+
+  Because, these measures indicate if the application is much accessed.
   ```
 
 ## Troubleshooting
