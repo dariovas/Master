@@ -175,18 +175,99 @@ You should see the application's main page titled __Todos V2__ and you should be
 
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
-> // TODO
-
 ```````
-// TODO object descriptions
+# Object : service/api-svc
+
+$ kubectl describe service/api-svc
+Name:              api-svc
+Namespace:         default
+Labels:            component=api
+Annotations:       <none>
+Selector:          app=todo,component=api
+Type:              ClusterIP
+IP Family Policy:  SingleStack
+IP Families:       IPv4
+IP:                10.102.1.145
+IPs:               10.102.1.145
+Port:              api  8081/TCP
+TargetPort:        8081/TCP
+Endpoints:         10.244.0.7:8081
+Session Affinity:  None
+Events:            <none>
+
+# Object : pod/frontend
+
+$ kubectl describe pod/frontend
+
+Name:             frontend
+Namespace:        default
+Priority:         0
+Service Account:  default
+Node:             minikube/192.168.49.2
+Start Time:       Thu, 02 May 2024 15:48:52 +0200
+Labels:           app=todo
+                  component=frontend
+Annotations:      <none>
+Status:           Running
+IP:               10.244.0.8
+IPs:
+  IP:  10.244.0.8
+Containers:
+  frontend:
+    Container ID:   docker://37e872d6a2f28e5ab91864672c48012add67cc8cef527be292fa0bb79f581d40
+    Image:          icclabcna/ccp2-k8s-todo-frontend
+    Image ID:       docker-pullable://icclabcna/ccp2-k8s-todo-frontend@sha256:5892b8f75a4dd3aa9d9cf527f8796a7638dba574ea8e6beef49360a3c67bbb44
+    Port:           8080/TCP
+    Host Port:      0/TCP
+    State:          Running
+      Started:      Thu, 02 May 2024 15:49:04 +0200
+    Ready:          True
+    Restart Count:  0
+    Environment:
+      API_ENDPOINT_URL:  http://api-svc:8081
+    Mounts:
+      /var/run/secrets/kubernetes.io/serviceaccount from kube-api-access-rpmgt (ro)
 ```````
 
 ```yaml
 # api-svc.yaml
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    component: api
+  name: api-svc
+spec:
+  ports:
+  - port: 8081
+    targetPort: 8081
+    name: api
+  selector:
+    app: todo
+    component: api
+  type: ClusterIP
 ```
 
 ```yaml
 # frontend-pod.yaml
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: frontend
+  labels:
+    component: frontend
+    app: todo
+spec:
+  containers:
+  - name: frontend
+    image: icclabcna/ccp2-k8s-todo-frontend
+    ports:
+    - containerPort: 8080
+    env:
+    - name: API_ENDPOINT_URL
+      value: http://api-svc:8081
 ```
 
 > [!TIP]
