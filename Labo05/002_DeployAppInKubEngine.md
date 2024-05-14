@@ -74,7 +74,7 @@ gcloud components install gke-gcloud-auth-plugin
 ```````
 // Object descriptions
 
-The only change that I did is the creation of the file frontend-svc (the object descibe is below). 
+The only change that I did is the creation of the file frontend-svc (the content is below). 
 
 ```````
 
@@ -105,9 +105,10 @@ Take a screenshot of the cluster details from the GKE console. Copy the output o
 ![](./img/gc-cluster-info.png)
 
 ```````
-// TODO object descriptions
+# Object : service/frontend
 
-kubectl describe service/frontend-svc   
+$ kubectl describe service/frontend-svc  
+
 Name:                     frontend-svc
 Namespace:                default
 Labels:                   component=frontend
