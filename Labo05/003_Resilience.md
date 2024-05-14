@@ -51,8 +51,10 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     
   * How can you change the number of instances temporarily to 3? Hint: look for scaling in the deployment documentation
 
-    > kubectl scale deployment/frontend-deploy --replicas=3
-    
+    > We can modify the yaml file or we can run the following command
+    ```
+    kubectl scale deployment/frontend-deploy --replicas=3
+    ```
   * What autoscaling features are available? Which metrics are used?
 
     > // TODO
