@@ -75,7 +75,6 @@ gcloud components install gke-gcloud-auth-plugin
 // Object descriptions
 
 The only change that I did is the creation of the file frontend-svc (the content is below). 
-
 ```````
 
 ```yaml
