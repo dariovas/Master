@@ -18,7 +18,7 @@ Converting a Pod to be managed by a Deployment is quite simple.
 
   * Use only 1 instance for the Redis-Server. Why?
 
-    > // TODO
+    > Else if we need to replicate our data between the differant redis servers.
 
   * Delete all application Pods (using `kubectl delete pod ...`) and replace them with deployment versions.
 
