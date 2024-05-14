@@ -18,7 +18,7 @@ Converting a Pod to be managed by a Deployment is quite simple.
 
   * Use only 1 instance for the Redis-Server. Why?
 
-    > Else if we need to replicate our data between the differant redis servers.
+    > Else if we need to replicate our data between the different redis servers.
 
   * Delete all application Pods (using `kubectl delete pod ...`) and replace them with deployment versions.
 
@@ -57,11 +57,18 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
     ```
   * What autoscaling features are available? Which metrics are used?
 
-    > // TODO
+    > In Kubernetes, we can use autoscaling in two different ways HorizontalPodAutoscaler (HPA) or VerticalPodAutoscaler (VPA).
+    > The HPA allow you to increase or decrease the number of replicas according to different metrics such as CPU or memory usage.
+    > In comparision, The VPA allow you to scale the resources of the managed replicas, it utilizes historical data on CPU and memory usage to 
+    > adjust the CPU and memory requests of the Pods.
+ 
     
   * How can you update a component? (see "Updating a Deployment" in the deployment documentation)
 
-    > // TODO
+    > Update the deployment yaml file and run the `kubetctl apply` command.
+    ```
+    kubectl apply -f frontend-deploy.yaml
+    ```
 
 ## Subtask 3.3 - Put autoscaling in place and load-test it
 
