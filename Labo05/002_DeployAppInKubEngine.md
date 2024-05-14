@@ -72,8 +72,9 @@ gcloud components install gke-gcloud-auth-plugin
 ``` 
 
 ```````
-// TODO object descriptions
+// Object descriptions
 
+The only change that I did is the creation of the file frontend-svc (the object descibe is below). 
 
 ```````
 
@@ -101,8 +102,32 @@ spec:
 
 Take a screenshot of the cluster details from the GKE console. Copy the output of the `kubectl describe` command to describe your load balancer once completely initialized.
 
-> // TODO
+![](./img/gc-cluster-info.png)
 
 ```````
 // TODO object descriptions
+
+kubectl describe service/frontend-svc   
+Name:                     frontend-svc
+Namespace:                default
+Labels:                   component=frontend
+Annotations:              cloud.google.com/neg: {"ingress":true}
+Selector:                 app=todo,component=frontend
+Type:                     LoadBalancer
+IP Family Policy:         SingleStack
+IP Families:              IPv4
+IP:                       10.97.245.154
+IPs:                      10.97.245.154
+LoadBalancer Ingress:     34.65.61.66
+Port:                     frontend  80/TCP
+TargetPort:               8080/TCP
+NodePort:                 frontend  32701/TCP
+Endpoints:                10.124.1.9:8080
+Session Affinity:         None
+External Traffic Policy:  Cluster
+Events:
+  Type    Reason                Age    From                Message
+  ----    ------                ----   ----                -------
+  Normal  EnsuringLoadBalancer  6m5s   service-controller  Ensuring load balancer
+  Normal  EnsuredLoadBalancer   5m24s  service-controller  Ensured load balancer
 ```````
