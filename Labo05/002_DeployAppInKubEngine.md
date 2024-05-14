@@ -65,8 +65,9 @@ Now you can verify if the ToDo application is working correctly.
 
 Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report (if they are unchanged from the previous task just say so).
 
-### Issue to download the cluster configuration info
-To be able to download the cluster configuration info, we must download the following plugin `gke-gcloud-auth-plugin`
+> Issue to download the cluster configuration info
+> 
+> To be able to download the cluster configuration info, we must download the following plugin `gke-gcloud-auth-plugin`
 ```
 gcloud components install gke-gcloud-auth-plugin
 ``` 
