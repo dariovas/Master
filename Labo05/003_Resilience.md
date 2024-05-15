@@ -77,7 +77,7 @@ You may also use `kubectl get all` repeatedly to see a list of all resources.  Y
 
 On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilization of 30% and number of replicas between 1 and 4. 
 
-> The HPA configuration file is available on this [file](./files/frontend-autoscaler.yaml)
+> The HPA configuration file is available on this [file](./files/frontend-autoscaler.yaml).
 
 Load-test using Vegeta (500 requests should be enough).
 
@@ -109,10 +109,11 @@ Load-test using Vegeta (500 requests should be enough).
 
 Document your observations in the lab report. Document any difficulties you faced and how you overcame them. Copy the object descriptions into the lab report.
 
-> // TODO
+> I had to configure the resources part in the frontend-deploy.yaml.
 
 ```````sh
-// TODO object descriptions
+
+
 ```````
 
 ```yaml
