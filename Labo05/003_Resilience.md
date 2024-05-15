@@ -43,7 +43,10 @@ $ kubectl get pods --watch
 You may also use `kubectl get all` repeatedly to see a list of all resources.  You should also verify if the application stays available by continuously reloading your browser window.
 
   * What happens if you delete a Frontend or API Pod? How long does it take for the system to react?
-    > A new pod is immediately created. It takes less than 5 seconds to be up.
+    > The pod is marked as deleted in the cluster. Then a new pod is created automaticaly and it is assigned directly to the service.
+    > The time it takes to recreate a Pod depends on multiple things, for example : the image size, startup time (certain application can take
+    > longer to start up than others), pod scheduling (if the cluster is loaded, it will take more time) and pesitant storage (detach
+    > the volume from the old pod and to attache it to the new pod).
     
   * What happens when you delete the Redis Pod?
 
