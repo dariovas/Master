@@ -16,6 +16,3 @@ spec:
       target:
         type: Utilization
         averageUtilization: 30
-status:
-  currentReplicas: 0
-  desiredReplicas: 0
