@@ -112,18 +112,243 @@ Document your observations in the lab report. Document any difficulties you face
 > I had to configure the resources part in the frontend-deploy.yaml.
 
 ```````sh
+# Object : deployment/frontend-deploy
 
+$ kubectl describe deployment/frontend-deploy
+
+Name:                   frontend-deploy
+Namespace:              default
+CreationTimestamp:      Wed, 15 May 2024 14:16:30 +0200
+Labels:                 app=todo
+                        component=frontend
+Annotations:            deployment.kubernetes.io/revision: 2
+Selector:               app=todo,component=frontend
+Replicas:               4 desired | 4 updated | 4 total | 2 available | 2 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=todo
+           component=frontend
+  Containers:
+   frontend:
+    Image:      icclabcna/ccp2-k8s-todo-frontend
+    Port:       8080/TCP
+    Host Port:  0/TCP
+    Requests:
+      cpu:  10m
+    Environment:
+      API_ENDPOINT_URL:  http://api-svc:8081
+    Mounts:              <none>
+  Volumes:               <none>
+  Node-Selectors:        <none>
+  Tolerations:           <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      False   MinimumReplicasUnavailable
+OldReplicaSets:  frontend-deploy-67879ff5df (0/0 replicas created)
+NewReplicaSet:   frontend-deploy-859d5f8544 (4/4 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  21m   deployment-controller  Scaled up replica set frontend-deploy-67879ff5df to 2
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 1
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled down replica set frontend-deploy-67879ff5df to 1 from 2
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 2 from 1
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled down replica set frontend-deploy-67879ff5df to 0 from 1
+  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 4 from 2
+
+
+# Object : deployment/api-deploy
+
+$ kubectl describe deployment/api-deploy
+
+Name:                   api-deploy
+Namespace:              default
+CreationTimestamp:      Wed, 15 May 2024 14:16:36 +0200
+Labels:                 app=todo
+                        component=api
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=todo,component=api
+Replicas:               2 desired | 2 updated | 2 total | 1 available | 1 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=todo
+           component=api
+  Containers:
+   api:
+    Image:      icclabcna/ccp2-k8s-todo-api
+    Port:       8081/TCP
+    Host Port:  0/TCP
+    Environment:
+      REDIS_ENDPOINT:  redis-svc
+      REDIS_PWD:       ccp2
+    Mounts:            <none>
+  Volumes:             <none>
+  Node-Selectors:      <none>
+  Tolerations:         <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      False   MinimumReplicasUnavailable
+OldReplicaSets:  <none>
+NewReplicaSet:   api-deploy-664fbdf7d9 (2/2 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  19m   deployment-controller  Scaled up replica set api-deploy-664fbdf7d9 to 2
+
+
+# Object : deployment/redis-deploy
+
+$ kubectl describe deployment/redis-deploy
+
+Name:                   redis-deploy
+Namespace:              default
+CreationTimestamp:      Wed, 15 May 2024 14:16:40 +0200
+Labels:                 app=todo
+                        component=redis
+Annotations:            deployment.kubernetes.io/revision: 1
+Selector:               app=todo,component=redis
+Replicas:               1 desired | 1 updated | 1 total | 0 available | 1 unavailable
+StrategyType:           RollingUpdate
+MinReadySeconds:        0
+RollingUpdateStrategy:  25% max unavailable, 25% max surge
+Pod Template:
+  Labels:  app=todo
+           component=redis
+  Containers:
+   redis:
+    Image:      redis
+    Port:       6379/TCP
+    Host Port:  0/TCP
+    Args:
+      redis-server
+      --requirepass ccp2
+      --appendonly yes
+    Environment:   <none>
+    Mounts:        <none>
+  Volumes:         <none>
+  Node-Selectors:  <none>
+  Tolerations:     <none>
+Conditions:
+  Type           Status  Reason
+  ----           ------  ------
+  Progressing    True    NewReplicaSetAvailable
+  Available      False   MinimumReplicasUnavailable
+OldReplicaSets:  <none>
+NewReplicaSet:   redis-deploy-56fb88dd96 (1/1 replicas created)
+Events:
+  Type    Reason             Age   From                   Message
+  ----    ------             ----  ----                   -------
+  Normal  ScalingReplicaSet  20m   deployment-controller  Scaled up replica set redis-deploy-56fb88dd96 to 1
 
 ```````
 
 ```yaml
 # redis-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: redis-deploy
+  labels:
+    component: redis
+    app: todo
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      component: redis
+      app: todo
+  template:
+    metadata:
+      labels:
+        component: redis
+        app: todo
+    spec:
+      containers:
+        - name: redis
+          image: redis
+          ports:
+            - containerPort: 6379
+          args:
+            - redis-server 
+            - --requirepass ccp2 
+            - --appendonly yes
+
 ```
 
 ```yaml
 # api-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-deploy
+  labels:
+    component: api
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: api
+      app: todo
+  template:
+    metadata:
+      labels:
+        component: api
+        app: todo
+    spec:
+      containers:
+      - name: api
+        image: icclabcna/ccp2-k8s-todo-api
+        ports:
+        - containerPort: 8081
+        env:
+        - name: REDIS_ENDPOINT
+          value: redis-svc
+        - name: REDIS_PWD
+          value: ccp2
 ```
 
 ```yaml
 # frontend-deploy.yaml
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deploy
+  labels:
+    component: frontend
+    app: todo
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      component: frontend
+      app: todo
+  template:
+    metadata:
+      labels:
+        component: frontend
+        app: todo
+    spec:
+      containers:
+      - name: frontend
+        image: icclabcna/ccp2-k8s-todo-frontend
+        ports:
+        - containerPort: 8080
+        env:
+        - name: API_ENDPOINT_URL
+          value: http://api-svc:8081
+        resources:
+          requests:
+            cpu: 10m
 ```
