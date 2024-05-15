@@ -112,6 +112,9 @@ Document your observations in the lab report. Document any difficulties you face
 > I had to configure the resources part in the frontend-deploy.yaml.
 
 ```````sh
+# Others objects did not change from the previous task.
+# I have listed the ones that have created.
+
 # Object : deployment/frontend-deploy
 
 $ kubectl describe deployment/frontend-deploy
