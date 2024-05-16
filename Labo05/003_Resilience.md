@@ -131,16 +131,16 @@ Document your observations in the lab report. Document any difficulties you face
 # Others objects did not change from the previous task.
 # I have listed the ones that have created.
 
-# Object : deployment/frontend-deploy
+# Object : deployment/frontend
 
-$ kubectl describe deployment/frontend-deploy
+$ kubectl describe deployment/frontend
 
-Name:                   frontend-deploy
+Name:                   frontend
 Namespace:              default
-CreationTimestamp:      Wed, 15 May 2024 14:16:30 +0200
+CreationTimestamp:      Thu, 16 May 2024 11:05:42 +0200
 Labels:                 app=todo
                         component=frontend
-Annotations:            deployment.kubernetes.io/revision: 2
+Annotations:            deployment.kubernetes.io/revision: 1
 Selector:               app=todo,component=frontend
 Replicas:               4 desired | 4 updated | 4 total | 2 available | 2 unavailable
 StrategyType:           RollingUpdate
@@ -167,31 +167,28 @@ Conditions:
   ----           ------  ------
   Progressing    True    NewReplicaSetAvailable
   Available      False   MinimumReplicasUnavailable
-OldReplicaSets:  frontend-deploy-67879ff5df (0/0 replicas created)
-NewReplicaSet:   frontend-deploy-859d5f8544 (4/4 replicas created)
+OldReplicaSets:  <none>
+NewReplicaSet:   frontend-859d5f8544 (4/4 replicas created)
 Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  21m   deployment-controller  Scaled up replica set frontend-deploy-67879ff5df to 2
-  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 1
-  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled down replica set frontend-deploy-67879ff5df to 1 from 2
-  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 2 from 1
-  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled down replica set frontend-deploy-67879ff5df to 0 from 1
-  Normal  ScalingReplicaSet  11m   deployment-controller  Scaled up replica set frontend-deploy-859d5f8544 to 4 from 2
+  Normal  ScalingReplicaSet  22m   deployment-controller  Scaled up replica set frontend-859d5f8544 to 2
+  Normal  ScalingReplicaSet  17m   deployment-controller  Scaled up replica set frontend-859d5f8544 to 4 from 2
 
 
-# Object : deployment/api-deploy
 
-$ kubectl describe deployment/api-deploy
+# Object : deployment/api
 
-Name:                   api-deploy
+$ kubectl describe deployment/api
+
+Name:                   api
 Namespace:              default
-CreationTimestamp:      Wed, 15 May 2024 14:16:36 +0200
+CreationTimestamp:      Thu, 16 May 2024 11:05:36 +0200
 Labels:                 app=todo
                         component=api
 Annotations:            deployment.kubernetes.io/revision: 1
 Selector:               app=todo,component=api
-Replicas:               2 desired | 2 updated | 2 total | 1 available | 1 unavailable
+Replicas:               2 desired | 2 updated | 2 total | 0 available | 2 unavailable
 StrategyType:           RollingUpdate
 MinReadySeconds:        0
 RollingUpdateStrategy:  25% max unavailable, 25% max surge
@@ -216,20 +213,21 @@ Conditions:
   Progressing    True    NewReplicaSetAvailable
   Available      False   MinimumReplicasUnavailable
 OldReplicaSets:  <none>
-NewReplicaSet:   api-deploy-664fbdf7d9 (2/2 replicas created)
+NewReplicaSet:   api-664fbdf7d9 (2/2 replicas created)
 Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  19m   deployment-controller  Scaled up replica set api-deploy-664fbdf7d9 to 2
+  Normal  ScalingReplicaSet  21m   deployment-controller  Scaled up replica set api-664fbdf7d9 to 2
 
 
-# Object : deployment/redis-deploy
 
-$ kubectl describe deployment/redis-deploy
+# Object : deployment/redis
 
-Name:                   redis-deploy
+$ kubectl describe deployment/redis
+
+Name:                   redis
 Namespace:              default
-CreationTimestamp:      Wed, 15 May 2024 14:16:40 +0200
+CreationTimestamp:      Thu, 16 May 2024 11:05:47 +0200
 Labels:                 app=todo
                         component=redis
 Annotations:            deployment.kubernetes.io/revision: 1
@@ -261,11 +259,11 @@ Conditions:
   Progressing    True    NewReplicaSetAvailable
   Available      False   MinimumReplicasUnavailable
 OldReplicaSets:  <none>
-NewReplicaSet:   redis-deploy-56fb88dd96 (1/1 replicas created)
+NewReplicaSet:   redis-56fb88dd96 (1/1 replicas created)
 Events:
   Type    Reason             Age   From                   Message
   ----    ------             ----  ----                   -------
-  Normal  ScalingReplicaSet  20m   deployment-controller  Scaled up replica set redis-deploy-56fb88dd96 to 1
+  Normal  ScalingReplicaSet  23m   deployment-controller  Scaled up replica set redis-56fb88dd96 to 1
 
 ```````
 
