@@ -275,7 +275,7 @@ Events:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: redis-deploy
+  name: redis
   labels:
     component: redis
     app: todo
@@ -309,7 +309,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: api-deploy
+  name: api
   labels:
     component: api
     app: todo
@@ -343,7 +343,7 @@ spec:
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: frontend-deploy
+  name: frontend
   labels:
     component: frontend
     app: todo
