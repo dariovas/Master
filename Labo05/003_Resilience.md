@@ -81,6 +81,21 @@ On the GKE cluster deploy autoscaling on the Frontend with a target CPU utilizat
 
 Load-test using Vegeta (500 requests should be enough).
 
+```
+$ echo "GET http://34.65.8.43/" | vegeta attack -duration=1m -rate=500 | vegeta report --type=text       
+
+Requests      [total, rate, throughput]         30000, 500.02, 329.97
+Duration      [total, attack, wait]             1m30s, 59.998s, 29.992s
+Latencies     [min, mean, 50, 90, 95, 99, max]  14.377ms, 1.285s, 20.812ms, 4.007s, 6.17s, 23.875s, 30.005s
+Bytes In      [total, mean]                     18736914, 624.56
+Bytes Out     [total, mean]                     0, 0.00
+Success       [ratio]                           98.98%
+Status Codes  [code:count]                      0:306  200:29694  
+Error Set:
+Get "http://34.65.8.43/": context deadline exceeded (Client.Timeout exceeded while awaiting headers)
+
+```
+
 > [!NOTE]
 >
 > - The autoscale may take a while to trigger.
