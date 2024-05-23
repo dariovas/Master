@@ -152,18 +152,21 @@ terraform plan -input=false -out=.terraform/plan.cache
 ```
 
 ```
-//TODO - copy the command result in a file named "planCache.json" and add it to your lab repo.
+Copy the command result in a file named "planCache.json" and add it to your lab repo.
 ```
+
+The file planCache.json is available [here](./files/planCache.json).
 
 * If satisfied with your execution plan, apply it:
 
 ```bash
-    terraform apply -input=false .terraform/plan.cache
+terraform apply -input=false .terraform/plan.cache
 ```
 
 ```
-//TODO - copy the command result in a file name "planCacheApplied.txt
+Copy the command result in a file name "planCacheApplied.txt
 ```
+The file planCacheApplied.txt is available [here](./files/planCacheApplied.txt).
 
 * Test access via ssh
 
