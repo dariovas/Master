@@ -224,19 +224,137 @@ Deliverables:
 * Explain the usage of each provided file and its contents by directly adding comments in the file as needed (we must ensure that you understood what you have done). In the file `variables.tf` fill the missing documentation parts and link to the online documentation. Copy the modified files to the report.
 
 ```
-//TODO
+# File name : backend.tf
+
+terraform {
+  # Defining the global configuration for Terraform
+  backend "local" {
+    # Using the local backend to store the state
+    # The state will be stored in a file named 'terraform.tfstate'
+    # in the directory where you run Terraform
+  }
+}
+
+
+# File name : main.tf
+
+provider "google" {
+  project     = var.gcp_project_id # The GCP project ID
+  region      = "europe-west6-a" # The region used for resources
+  credentials = file("${var.gcp_service_account_key_file_path}") # Path to the GCP service account key file which will allow us to deploy resources to the cloud.
+}
+
+resource "google_compute_instance" "default" {
+  name         = var.gce_instance_name # The Google Compute Engine instance name
+  machine_type = "f1-micro" # The machine type for the instance
+  zone         = "europe-west6-a" # The zone in which the instance will be deployed
+
+  metadata = {
+    # Set the ssh key for the instance
+    ssh-keys = "${var.gce_instance_user}:${file("${var.gce_ssh_pub_key_file_path}")}" 
+  }
+
+  # Boot disk image for the instance
+  boot_disk {
+    initialize_params {
+      image = "ubuntu-os-cloud/ubuntu-2004-lts"
+    }
+  }
+
+  # Network configuration for the instance
+  network_interface {
+    network = "default"
+
+    access_config {
+      # Include this section to give the VM an external IP address
+    }
+  }
+}
+
+resource "google_compute_firewall" "ssh" {
+  name          = "allow-ssh" # Name of the firewall rule
+  network       = "default" # Network for the firewall rule
+  source_ranges = ["0.0.0.0/0"] # Source IP ranges allowed to access
+  allow {
+    ports    = ["22"] # Allows SSH port
+    protocol = "tcp" # Protocol used by the rule
+  }
+}
+
+resource "google_compute_firewall" "http" {
+  name          = "allow-http" # Name of the firewall rule
+  network       = "default" # Network for the firewall rule
+  source_ranges = ["0.0.0.0/0"] # Source IP ranges allowed to access
+  allow {
+    ports    = ["80"] # Allows HTTP port
+    protocol = "tcp" # Protocol used by the rule
+  }
+}
+
+
+# File name : outputs.tf
+
+# Displays the GCE instance IP address
+output "gce_instance_ip" {
+  value = google_compute_instance.default.network_interface.0.access_config.0.nat_ip
+}
+
+
+# File name : variables.tf
+
+variable "gcp_project_id" {
+  description = "ID of the Google cloud Platform project"
+  type        = string
+  nullable    = false
+  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
+}
+
+variable "gcp_service_account_key_file_path" {
+  description = "File path to the GCP service account key file"
+  type        = string
+  nullable    = false
+  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
+}
+
+variable "gce_instance_name" {
+  description = "Google Compute Engine instance name"
+  type        = string
+  nullable    = false
+  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
+}
+
+variable "gce_instance_user" {
+  description = "Username for SSH access to the instance"
+  type        = string
+  nullable    = false
+  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
+}
+
+variable "gce_ssh_pub_key_file_path" {
+  description = "File path to the SSH public key file"
+  type        = string
+  nullable    = false
+  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
+}
 ```
 
 * Explain what the files created by Terraform are used for.
 
-```
-//TODO
-```
+|File/FolderName|Explanation|
+|:--|:--|
+|.terraform.lock.hcl|Lock file that ensures the consistency of the provider versions used in the project|
+|.terraform|This directory contains the files and the folders needed to manage Terraform plugins and the state of our resources|
+|darwin_arm64|Contains the plugin for the Google Cloud provider version 5.30.0 for the darwin_arm64 architecture|
+|LICENSE.txt|License file for the plugin|
+|terraform-provider-google_v5.30.0_x5|The provider plugin binary|
+|.terraform/terraform.tfstate|State file that stores the state of the infrastructure managed by Terraform|
 
 * Where is the Terraform state saved? Imagine you are working in a team and the other team members want to use Terraform, too, to manage the cloud infrastructure. Do you see any problems with this? Explain.
 
 ```
-//TODO
+As specified in our configuration the Terraform state is stored locally, we will have some problems :
+- If multiple people simultaneously change the infrastructure. This can result in conflicts and unpredictable behavior.
+- 
 ```
 
 * What happens if you reapply the configuration (1) without changing `main.tf` (2) with a change in `main.tf`? Do you see any changes in Terraform's output? Why? Can you think of examples where Terraform needs to delete parts of the infrastructure to be able to reconfigure it?
