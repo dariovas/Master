@@ -172,27 +172,27 @@ The file planCacheApplied.txt is available [here](./files/planCacheApplied.txt).
 
 [INPUT]
 ```bash
- ssh labgce@34.65.181.242 -i labgce-ssh-key
+ ssh labgce@34.65.53.176 -i labgce-ssh-key
 ```
 
 [OUTPUT]
 ```
-The authenticity of host '34.65.181.242 (34.65.181.242)' can't be established.
-ED25519 key fingerprint is SHA256:/JeP3ycRf/sOlyivMeY8r+10qWjhrHwv7SO2mBCubdY.
-This key is not known by any other names
+The authenticity of host '34.65.53.176 (34.65.53.176)' can't be established.
+ED25519 key fingerprint is SHA256:fwHUoJgk+xN9DqJqjf4RDKDDOGNDTtKyu0NDxdXoxI0.
+This key is not known by any other names.
 Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '34.65.181.242' (ED25519) to the list of known hosts.
+Warning: Permanently added '34.65.53.176' (ED25519) to the list of known hosts.
 Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1060-gcp x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/pro
 
- System information as of Thu May 23 12:41:13 UTC 2024
+ System information as of Thu May 23 12:44:19 UTC 2024
 
-  System load:  0.35              Processes:             96
-  Usage of /:   19.0% of 9.51GB   Users logged in:       0
-  Memory usage: 34%               IPv4 address for ens4: 10.172.0.2
+  System load:  0.13              Processes:             96
+  Usage of /:   19.1% of 9.51GB   Users logged in:       0
+  Memory usage: 35%               IPv4 address for ens4: 10.172.0.2
   Swap usage:   0%
 
 Expanded Security Maintenance for Applications is not enabled.
@@ -211,7 +211,7 @@ individual files in /usr/share/doc/*/copyright.
 Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
 applicable law.
 
-labgce@labgce:~$
+labgce@labgce:~$ 
 ```
 
 If no errors occur, you have successfully managed to create a VM on Google Cloud using Terraform. You should see the IP of the Google Compute instance in the console. Save the instance IP, it will be used later.
