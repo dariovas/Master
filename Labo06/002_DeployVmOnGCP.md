@@ -100,9 +100,26 @@ commands will detect it and remind you to do so if necessary.
     
 * What files were created in the `terraform` directory? Make sure to look also at hidden files and directories (`ls -a`).
 
-//TODO
 [OUTPUT]
 ```bash
+tree -a
+.
+├── .terraform
+│   ├── providers
+│   │   └── registry.terraform.io
+│   │       └── hashicorp
+│   │           └── google
+│   │               └── 5.30.0
+│   │                   └── darwin_arm64
+│   │                       ├── LICENSE.txt
+│   │                       └── terraform-provider-google_v5.30.0_x5
+│   └── terraform.tfstate
+├── .terraform.lock.hcl
+├── backend.tf
+├── main.tf
+├── outputs.tf
+├── terraform.tfvars
+└── variables.tf
 ```
 
 * What are they used for?
