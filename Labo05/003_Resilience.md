@@ -127,7 +127,9 @@ Document your observations in the lab report. Document any difficulties you face
 
 > I had to configure the resources part in the frontend-deploy.yaml.
 
+
 ```````sh
+<<<<<<< HEAD
 # Others objects did not change from the previous task.
 # I have listed the ones that have created.
 
@@ -265,6 +267,9 @@ Events:
   ----    ------             ----  ----                   -------
   Normal  ScalingReplicaSet  23m   deployment-controller  Scaled up replica set redis-56fb88dd96 to 1
 
+=======
+// TODO autoscaling description
+>>>>>>> upstream/main
 ```````
 
 ```yaml
@@ -337,6 +342,7 @@ spec:
 
 ```yaml
 # frontend-deploy.yaml
+<<<<<<< HEAD
 
 apiVersion: apps/v1
 kind: Deployment
@@ -368,4 +374,6 @@ spec:
         resources:
           requests:
             cpu: 10m
+=======
+>>>>>>> upstream/main
 ```
