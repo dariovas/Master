@@ -354,25 +354,37 @@ variable "gce_ssh_pub_key_file_path" {
 ```
 As specified in our configuration the Terraform state is stored locally, we will have some problems :
 - If multiple people simultaneously change the infrastructure. This can result in conflicts and unpredictable behavior.
-- 
+- The state is stored in a single file. If this file is corrupted it ca cause errors
+- Terraform provides a mechanism called state locking. This feature help to prevent concurrent operations on the state file. If it's not implement correcty. It can cause issue.
+- Difficult to manage changes and track who made specific modifications. It's occur whent a single state file is shared between the teams.
 ```
 
 * What happens if you reapply the configuration (1) without changing `main.tf` (2) with a change in `main.tf`? Do you see any changes in Terraform's output? Why? Can you think of examples where Terraform needs to delete parts of the infrastructure to be able to reconfigure it?
 
 ```
-//TODO
+Reapplying the configuration without changes results in no action by Terraform.
+If we make change in 'maint.tf' Terafform generate a plan and update the infrastucture.
+In some case, some changes require to delete and recreate ressources. This case is when dealing with immutable attributes, renaming resources, altering dependencies, network setting. 
 ```
 
 * Explain what you would need to do to manage multiple instances.
 
 ```
-//TODO
+We can add a 'count' parameter.
+variable "instance_count" {
+  description = "Number of instances to create"
+  type        = number
+  default     = 3
+}
+
+We also have 'for_each? for specific configuration with one or multiple instances.
 ```
 
 * Take a screenshot of the Google Cloud Console showing your Google Compute instance and put it in the report.
 
 ```
-//TODO
+
 ```
+![](.\img\gce-instance.png)
 
 * Deliver a folder "terraform" with your configuration.
