@@ -385,6 +385,6 @@ We also have 'for_each? for specific configuration with one or multiple instance
 ```
 
 ```
-![](.\img\gce-instance.png)
+![](./img/GCE-instance.png)
 
 * Deliver a folder "terraform" with your configuration.
