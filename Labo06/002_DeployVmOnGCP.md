@@ -124,10 +124,14 @@ $ tree -a
 
 * What are they used for?
 
-//TODO
 |File/FolderName|Explanation|
 |:--|:--|
-|||
+|.terraform.lock.hcl|Lock file that ensures the consistency of the provider versions used in the project|
+|.terraform|This directory contains the files and the folders needed to manage Terraform plugins and the state of our resources|
+|darwin_arm64|Contains the plugin for the Google Cloud provider|
+|LICENSE.txt|License file for the plugin|
+|terraform-provider-google_v5.30.0_x5|The provider plugin binary|
+|.terraform/terraform.tfstate|State file that stores the state of the infrastructure managed by Terraform|
 
 
 * Check that your Terraform configuration is valid:
