@@ -102,7 +102,7 @@ commands will detect it and remind you to do so if necessary.
 
 [OUTPUT]
 ```bash
-tree -a
+$ tree -a
 .
 ├── .terraform
 │   ├── providers
