@@ -140,9 +140,9 @@ $ tree -a
 terraform validate
 ```
 
-//TODO
 [OUTPUT]
 ```bash
+Success! The configuration is valid.
 ```
 
 * Create an execution plan to preview the changes that will be made to your infrastructure and save it locally:
