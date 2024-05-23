@@ -129,7 +129,6 @@ Document your observations in the lab report. Document any difficulties you face
 
 
 ```````sh
-<<<<<<< HEAD
 # Others objects did not change from the previous task.
 # I have listed the ones that have created.
 
@@ -342,7 +341,6 @@ spec:
 
 ```yaml
 # frontend-deploy.yaml
-<<<<<<< HEAD
 
 apiVersion: apps/v1
 kind: Deployment
@@ -374,6 +372,4 @@ spec:
         resources:
           requests:
             cpu: 10m
-=======
->>>>>>> upstream/main
 ```
