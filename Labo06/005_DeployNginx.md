@@ -115,21 +115,45 @@ address of the managed server. You should see the homepage showing
 //TODO
 [INPUT]
 ```bash
-curl <yourIP>
+curl http://34.65.53.176
 ```
 
 [OUTPUT]
 ```html
+<!DOCTYPE html>
+<html>
+<head>
+<title>Welcome to nginx!</title>
+<style>
+    body {
+        width: 35em;
+        margin: 0 auto;
+        font-family: Tahoma, Verdana, Arial, sans-serif;
+    }
+</style>
+</head>
+<body>
+<h1>Welcome to nginx!</h1>
+<p>If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.</p>
+
+<p>For online documentation and support please refer to
+<a href="http://nginx.org/">nginx.org</a>.<br/>
+Commercial support is available at
+<a href="http://nginx.com/">nginx.com</a>.</p>
+
+<p><em>Thank you for using nginx.</em></p>
+</body>
+</html>
 ```
 
 Deliverables:
 
 - Explain the usage of each file and its contents, add comments to the different blocks if needed (we must ensure that you understood what you have done). Link to the online documentation. Link to the online documentation.
 
-//TODO
 |FileName|Explanation|
 |:--|:--|
-||||
+|web.yml||
 
 
 * Deliver a folder "ansible" with your configuration.
