@@ -26,9 +26,15 @@ You should now be able to ping the webservers group:
 ansible webservers -m ping
 ```
 
-//TODO
 [OUTPUT]
 ```json
+gce_instance | SUCCESS => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python3"
+    },
+    "changed": false,
+    "ping": "pong"
+}
 ```
 
 The output should be the same as before.
