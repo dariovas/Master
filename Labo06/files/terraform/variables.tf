@@ -1,34 +1,29 @@
 variable "gcp_project_id" {
-  description = "ID of the Google cloud Platform project"
+  description = ""
   type        = string
   nullable    = false
-  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
 }
 
 variable "gcp_service_account_key_file_path" {
-  description = "File path to the GCP service account key file"
+  description = ""
   type        = string
   nullable    = false
-  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
 }
 
 variable "gce_instance_name" {
-  description = "Google Compute Engine instance name"
+  description = ""
   type        = string
   nullable    = false
-  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
 }
 
 variable "gce_instance_user" {
-  description = "Username for SSH access to the instance"
+  description = ""
   type        = string
   nullable    = false
-  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
 }
 
 variable "gce_ssh_pub_key_file_path" {
-  description = "File path to the SSH public key file"
+  description = ""
   type        = string
   nullable    = false
-  # Documentation : https://developer.hashicorp.com/terraform/language/values/variables
 }
