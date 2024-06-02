@@ -95,14 +95,15 @@ google_compute_firewall.ssh: Refreshing state... [id=projects/labgce-cld/global/
 google_compute_firewall.http: Refreshing state... [id=projects/labgce-cld/global/firewalls/allow-http]
 google_compute_instance.default: Refreshing state... [id=projects/labgce-cld/zones/europe-west6-a/instances/labgce]
 
-Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following symbols:
+Terraform used the selected providers to generate the following execution plan. Resource actions are indicated with the following
+symbols:
   - destroy
 
 Terraform will perform the following actions:
 
   # google_compute_firewall.http will be destroyed
   - resource "google_compute_firewall" "http" {
-      - creation_timestamp      = "2024-05-23T05:41:14.247-07:00" -> null
+      - creation_timestamp      = "2024-06-02T03:53:08.318-07:00" -> null
       - destination_ranges      = [] -> null
       - direction               = "INGRESS" -> null
       - disabled                = false -> null
@@ -131,7 +132,7 @@ Terraform will perform the following actions:
 
   # google_compute_firewall.ssh will be destroyed
   - resource "google_compute_firewall" "ssh" {
-      - creation_timestamp      = "2024-05-23T05:41:14.255-07:00" -> null
+      - creation_timestamp      = "2024-06-02T03:53:08.471-07:00" -> null
       - destination_ranges      = [] -> null
       - direction               = "INGRESS" -> null
       - disabled                = false -> null
@@ -168,7 +169,7 @@ Terraform will perform the following actions:
       - enable_display       = false -> null
       - guest_accelerator    = [] -> null
       - id                   = "projects/labgce-cld/zones/europe-west6-a/instances/labgce" -> null
-      - instance_id          = "1327252370532501380" -> null
+      - instance_id          = "1590674495892484602" -> null
       - label_fingerprint    = "42WmSpB8rSM=" -> null
       - labels               = {} -> null
       - machine_type         = "f1-micro" -> null
@@ -211,7 +212,7 @@ Terraform will perform the following actions:
           - internal_ipv6_prefix_length = 0 -> null
           - name                        = "nic0" -> null
           - network                     = "https://www.googleapis.com/compute/v1/projects/labgce-cld/global/networks/default" -> null
-          - network_ip                  = "10.172.0.2" -> null
+          - network_ip                  = "10.172.0.8" -> null
           - queue_count                 = 0 -> null
           - stack_type                  = "IPV4_ONLY" -> null
           - subnetwork                  = "https://www.googleapis.com/compute/v1/projects/labgce-cld/regions/europe-west6/subnetworks/default" -> null
@@ -219,7 +220,7 @@ Terraform will perform the following actions:
             # (3 unchanged attributes hidden)
 
           - access_config {
-              - nat_ip                 = "34.65.53.176" -> null
+              - nat_ip                 = "34.65.193.158" -> null
               - network_tier           = "PREMIUM" -> null
                 # (1 unchanged attribute hidden)
             }
@@ -244,16 +245,16 @@ Terraform will perform the following actions:
 Plan: 0 to add, 0 to change, 3 to destroy.
 
 Changes to Outputs:
-  - gce_instance_ip = "34.65.53.176" -> null
+  - gce_instance_ip = "34.65.193.158" -> null
 
 Do you really want to destroy all resources?
   Terraform will destroy all your managed infrastructure, as shown above.
   There is no undo. Only 'yes' will be accepted to confirm.
 
-  Enter a value: yes
+  Enter a value: yes 
 
-google_compute_firewall.ssh: Destroying... [id=projects/labgce-cld/global/firewalls/allow-ssh]
 google_compute_firewall.http: Destroying... [id=projects/labgce-cld/global/firewalls/allow-http]
+google_compute_firewall.ssh: Destroying... [id=projects/labgce-cld/global/firewalls/allow-ssh]
 google_compute_instance.default: Destroying... [id=projects/labgce-cld/zones/europe-west6-a/instances/labgce]
 google_compute_firewall.ssh: Still destroying... [id=projects/labgce-cld/global/firewalls/allow-ssh, 10s elapsed]
 google_compute_firewall.http: Still destroying... [id=projects/labgce-cld/global/firewalls/allow-http, 10s elapsed]
@@ -264,7 +265,7 @@ google_compute_instance.default: Still destroying... [id=projects/labgce-cld/zon
 google_compute_instance.default: Still destroying... [id=projects/labgce-cld/zones/europe-west6-a/instances/labgce, 30s elapsed]
 google_compute_instance.default: Still destroying... [id=projects/labgce-cld/zones/europe-west6-a/instances/labgce, 40s elapsed]
 google_compute_instance.default: Still destroying... [id=projects/labgce-cld/zones/europe-west6-a/instances/labgce, 50s elapsed]
-google_compute_instance.default: Destruction complete after 51s
+google_compute_instance.default: Destruction complete after 52s
 
 Destroy complete! Resources: 3 destroyed.
 ```
