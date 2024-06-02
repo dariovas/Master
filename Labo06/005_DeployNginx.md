@@ -112,38 +112,28 @@ You can then test the new web site by pointing your browser to the
 address of the managed server. You should see the homepage showing
 "NGINX, configured by Ansible".
 
-//TODO
 [INPUT]
 ```bash
-curl http://34.65.53.176
+curl 34.65.193.158
 ```
 
 [OUTPUT]
 ```html
-<!DOCTYPE html>
 <html>
-<head>
-<title>Welcome to nginx!</title>
-<style>
-    body {
-        width: 35em;
-        margin: 0 auto;
-        font-family: Tahoma, Verdana, Arial, sans-serif;
-    }
-</style>
-</head>
-<body>
-<h1>Welcome to nginx!</h1>
-<p>If you see this page, the nginx web server is successfully installed and
-working. Further configuration is required.</p>
-
-<p>For online documentation and support please refer to
-<a href="http://nginx.org/">nginx.org</a>.<br/>
-Commercial support is available at
-<a href="http://nginx.com/">nginx.com</a>.</p>
-
-<p><em>Thank you for using nginx.</em></p>
-</body>
+    <head>
+    <title>Welcome to ansible</title> </head>
+    <body>
+    <h1>nginx, configured by Ansible</h1>
+    <p>If you can see this, Ansible successfully installed nginx.</p>
+    <p>Ansible managed</p>
+    <p>Some facts Ansible gathered about this machine:
+    <table>
+        <tr><td>OS family:</td><td>Debian</td></tr>
+        <tr><td>Distribution:</td><td>Ubuntu</td></tr>
+        <tr><td>Distribution version:</td><td>20.04</td></tr>
+    </table>
+    </p>
+    </body>
 </html>
 ```
 
@@ -153,7 +143,13 @@ Deliverables:
 
 |FileName|Explanation|
 |:--|:--|
-|web.yml||
+|ansible.cfg|Configuration file for ansible|
+|hosts|Inventory of the hosts that Ansible manages|
+|nginx.conf|Configuration file for nginx|
+|index.html.j2|HTML page displayed on the webservers site|
+|web.yml|Defines the tasks to configure the webserver with NGINX on the hosts belonging to the group webservers|
 
 
 * Deliver a folder "ansible" with your configuration.
+
+[ansible folder](./files/ansible)
