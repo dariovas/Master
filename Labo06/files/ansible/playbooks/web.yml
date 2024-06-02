@@ -1,26 +1,36 @@
-- name: Configure webserver with NGINX
-  hosts: webservers
-  become: True
-  tasks:
+- name: Configure webserver with NGINX # Name of the playbook
+  hosts: webservers                    # Target hosts
+  become: True                         # Use elevated privileges (sudo)
+  tasks:                               # List of tasks to perform
+  # Uses the apt module to install nginx.
+  # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: Install NGINX
       apt:
         name: nginx
         state: present
         update_cache: yes
     - name: Copy NGINX config file
+    # Uses the copy module to copy the nginx.conf file from the local 'files' directory to the target host's location.
+    # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/copy_module.html
       copy:
         src: files/nginx.conf
         dest: /etc/nginx/sites-available/default
     - name: Enable the config file via symbolic link
+    # Uses the file module to ensure the symbolic link exists.
+    # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/file_module.html
       file:
         src: /etc/nginx/sites-available/default
         dest: /etc/nginx/sites-enabled/default
         state: link
+    # Places the rendered content into a specified destination file on the remote hosts.
+    # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/template_module.html
     - name: Template index.html.j2 to index.html
       template:
         src: templates/index.html.j2
         dest: /usr/share/nginx/html/index.html
         mode: 0644
+    # Restarts the NGINX service on the remote hosts.
+    # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/service_module.html
     - name: Restart NGINX
       service:
         name: nginx
