@@ -172,45 +172,39 @@ The file planCacheApplied.txt is available [here](./files/planCacheApplied.txt).
 
 [INPUT]
 ```bash
- ssh labgce@34.65.53.176 -i labgce-ssh-key
+ssh labgce@34.65.193.158 -i credentials/labgce-ssh-key
 ```
 
 [OUTPUT]
 ```
-The authenticity of host '34.65.53.176 (34.65.53.176)' can't be established.
-ED25519 key fingerprint is SHA256:fwHUoJgk+xN9DqJqjf4RDKDDOGNDTtKyu0NDxdXoxI0.
-This key is not known by any other names.
-Are you sure you want to continue connecting (yes/no/[fingerprint])? yes
-Warning: Permanently added '34.65.53.176' (ED25519) to the list of known hosts.
 Welcome to Ubuntu 20.04.6 LTS (GNU/Linux 5.15.0-1060-gcp x86_64)
 
  * Documentation:  https://help.ubuntu.com
  * Management:     https://landscape.canonical.com
  * Support:        https://ubuntu.com/pro
 
- System information as of Thu May 23 12:44:19 UTC 2024
+ System information as of Sun Jun  2 11:16:45 UTC 2024
 
-  System load:  0.13              Processes:             96
-  Usage of /:   19.1% of 9.51GB   Users logged in:       0
-  Memory usage: 35%               IPv4 address for ens4: 10.172.0.2
+  System load:  0.0               Processes:             95
+  Usage of /:   21.2% of 9.51GB   Users logged in:       0
+  Memory usage: 36%               IPv4 address for ens4: 10.172.0.8
   Swap usage:   0%
+
 
 Expanded Security Maintenance for Applications is not enabled.
 
-0 updates can be applied immediately.
+15 updates can be applied immediately.
+7 of these updates are standard security updates.
+To see these additional updates run: apt list --upgradable
 
 Enable ESM Apps to receive additional future security updates.
 See https://ubuntu.com/esm or run: sudo pro status
 
+New release '22.04.3 LTS' available.
+Run 'do-release-upgrade' to upgrade to it.
 
 
-The programs included with the Ubuntu system are free software;
-the exact distribution terms for each program are described in the
-individual files in /usr/share/doc/*/copyright.
-
-Ubuntu comes with ABSOLUTELY NO WARRANTY, to the extent permitted by
-applicable law.
-
+Last login: Sun Jun  2 10:56:08 2024 from 83.78.150.80
 labgce@labgce:~$ 
 ```
 
