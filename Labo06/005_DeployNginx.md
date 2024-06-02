@@ -147,7 +147,7 @@ Deliverables:
 |hosts|Inventory of the hosts that Ansible manages|
 |nginx.conf|Configuration file for nginx|
 |index.html.j2|HTML page displayed on the webservers site|
-|web.yml|Defines the tasks to configure the webserver with NGINX on the hosts belonging to the group webservers|
+|web.yml|Defines the tasks for configuring the web server with NGINX on hosts belonging to the webservers group|
 
 
 * Deliver a folder "ansible" with your configuration.
