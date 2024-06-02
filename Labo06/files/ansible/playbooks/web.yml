@@ -2,8 +2,8 @@
   hosts: webservers                    # Target hosts
   become: True                         # Use elevated privileges (sudo)
   tasks:                               # List of tasks to perform
-  # Uses the apt module to install nginx.
-  # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
+    # Uses the apt module to install nginx.
+    # Documentation : https://docs.ansible.com/ansible/latest/collections/ansible/builtin/apt_module.html
     - name: Install NGINX
       apt:
         name: nginx
